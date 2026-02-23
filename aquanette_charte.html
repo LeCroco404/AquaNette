@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqua Nette — Charte Graphique</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bleu: #0A3D5F;
+  --azure: #1B7AA0;
+  --turquoise: #3BBFCF;
+  --aqua-clair: #C8EDF5;
+  --eau: #E8F7FB;
+  --blanc: #FAFCFD;
+  --sable: #F2EDE6;
+  --texte: #1A2B35;
+  --gris: #6B8090;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F0F0EE;
+  color: var(--texte);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* Header */
+.brand-header {
+  background: var(--bleu);
+  padding: 60px 60px;
+  margin-bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand-header-left {}
+.brand-doc-label {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--turquoise); margin-bottom: 12px;
+}
+.brand-doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300; color: white; line-height: 1.1;
+}
+.brand-doc-sub { font-size: 14px; color: rgba(200,237,245,0.55); font-weight: 300; margin-top: 8px; }
+
+/* Logo showcase */
+.logo-showcase {
+  display: flex; gap: 16px; flex-direction: column; align-items: flex-end;
+}
+.logo-variant {
+  display: flex; align-items: baseline; gap: 6px;
+}
+.logo-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 600; color: white; letter-spacing: 0.02em;
+}
+.logo-wave-main { color: var(--turquoise); font-size: 28px; }
+.logo-sub-main { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,237,245,0.5); font-weight: 300; }
+
+.logo-sm { font-size: 20px !important; }
+.logo-wave-sm { font-size: 16px !important; }
+
+/* Section layout */
+.section {
+  background: white;
+  border-radius: 20px;
+  padding: 48px;
+  margin: 24px 0;
+}
+.section-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--turquoise); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::after { content: ''; flex:1; height: 1px; background: rgba(59,191,207,0.2); }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300; color: var(--bleu);
+  margin-bottom: 32px;
+}
+
+/* ── COULEURS ── */
+.colors-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.color-swatch {
+  flex: 1; min-width: 140px;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.swatch-color { height: 120px; }
+.swatch-info { padding: 14px 16px; background: white; }
+.swatch-name { font-size: 13px; font-weight: 500; color: var(--bleu); margin-bottom: 2px; }
+.swatch-role { font-size: 11px; color: var(--gris); font-weight: 300; margin-bottom: 6px; }
+.swatch-hex { font-size: 12px; color: var(--gris); font-family: monospace; background: #f5f5f5; padding: 3px 8px; border-radius: 6px; display: inline-block; }
+
+/* ── TYPO ── */
+.typo-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.typo-block { padding: 28px; background: var(--blanc); border-radius: 14px; border: 1px solid rgba(10,61,95,0.08); }
+.typo-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris); margin-bottom: 16px; }
+.typo-demo-cormorant { font-family: 'Cormorant Garamond', serif; }
+.typo-demo-dm { font-family: 'DM Sans', sans-serif; }
+.typo-usage { font-size: 11px; color: var(--gris); margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(10,61,95,0.08); line-height: 1.5; }
+
+/* ── LOGO VARIATIONS ── */
+.logo-variations {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.logo-var-box {
+  padding: 36px 24px;
+  border-radius: 16px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+}
+.logo-var-box.dark { background: var(--bleu); }
+.logo-var-box.light { background: white; border: 1px solid rgba(10,61,95,0.1); }
+.logo-var-box.color { background: var(--eau); }
+.logo-var-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); }
+.logo-var-box.dark .logo-var-label { color: rgba(200,237,245,0.4); }
+
+.ln { display: flex; align-items: baseline; gap: 5px; }
+.lnt { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 0.02em; }
+.lnw { font-family: 'DM Sans', sans-serif; }
+
+/* ── ICONS / PICTOGRAMMES ── */
+.icons-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.icon-item {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 20px 12px;
+  background: var(--eau);
+  border-radius: 14px;
+  text-align: center;
+}
+.icon-emoji { font-size: 28px; }
+.icon-label { font-size: 10.5px; color: var(--bleu); font-weight: 400; line-height: 1.3; }
+
+/* ── CARTE DE VISITE ── */
+.cartes {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+
+.carte-recto {
+  width: 338px; height: 190px;
+  border-radius: 16px;
+  background: var(--bleu);
+  position: relative; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(10,61,95,0.3);
+  padding: 28px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.carte-recto::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(59,191,207,0.12);
+}
+.carte-recto::after {
+  content: '';
+  position: absolute; bottom: -40px; left: -30px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(59,191,207,0.07);
+}
+
+.cv-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: white; letter-spacing: 0.02em; }
+.cv-logo span { color: var(--turquoise); }
+.cv-name { font-size: 13px; font-weight: 500; color: white; }
+.cv-role { font-size: 11px; color: rgba(200,237,245,0.6); font-weight: 300; margin-top: 2px; }
+
+.carte-verso {
+  width: 338px; height: 190px;
+  border-radius: 16px;
+  background: var(--eau);
+  border: 1px solid rgba(59,191,207,0.25);
+  box-shadow: 0 12px 40px rgba(10,61,95,0.1);
+  padding: 28px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.cv-contacts { display: flex; flex-direction: column; gap: 8px; }
+.cv-line { font-size: 12.5px; color: var(--bleu); display: flex; align-items: center; gap: 8px; }
+.cv-line span { font-weight: 300; color: var(--gris); }
+.cv-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic; color: var(--azure);
+}
+
+/* ── PANNEAU VÉHICULE ── */
+.vehicule-mockup {
+  background: #E8E8E8;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+.vehicule-label { position: absolute; top: 12px; left: 20px; font-size: 10px; color: #999; letter-spacing: 0.1em; text-transform: uppercase; }
+.panneau {
+  background: var(--bleu);
+  border-radius: 12px;
+  padding: 20px 32px;
+  display: flex; align-items: center; gap: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.panneau-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: white; letter-spacing: 0.02em; }
+.panneau-logo span { color: var(--turquoise); }
+.panneau-sep { width: 1px; height: 40px; background: rgba(200,237,245,0.2); }
+.panneau-info { display: flex; flex-direction: column; gap: 2px; }
+.panneau-service { font-size: 11px; color: rgba(200,237,245,0.6); text-transform: uppercase; letter-spacing: 0.1em; }
+.panneau-phone { font-size: 18px; color: white; font-weight: 500; letter-spacing: 0.02em; }
+.panneau-zone { font-size: 10px; color: rgba(200,237,245,0.45); }
+
+/* ── TEMPLATES RÉSEAUX ── */
+.reseaux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.post-template {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.post-img {
+  height: 200px;
+  background: linear-gradient(135deg, var(--bleu) 0%, var(--azure) 60%, var(--turquoise) 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.post-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0.02) 1px, rgba(255,255,255,0) 2px, rgba(255,255,255,0) 20px);
+}
+.post-type { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--turquoise); }
+.post-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: white; line-height: 1.2; }
+.post-emoji { font-size: 40px; }
+.post-footer { background: white; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
+.post-footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--bleu); font-weight: 600; }
+.post-footer-logo span { color: var(--turquoise); }
+.post-hashtags { font-size: 10px; color: var(--azure); }
+
+/* ── TONE OF VOICE ── */
+.tov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tov-card {
+  padding: 22px; border-radius: 14px;
+}
+.tov-card.yes { background: #E8F5E9; border: 1px solid rgba(39,174,96,0.25); }
+.tov-card.no { background: #FDECEA; border: 1px solid rgba(231,76,60,0.2); }
+.tov-head { font-size: 12px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.tov-head.yes-h { color: #27AE60; }
+.tov-head.no-h { color: #E74C3C; }
+.tov-item { font-size: 12px; color: var(--texte); margin-bottom: 8px; line-height: 1.5; font-weight: 300; padding-left: 16px; position: relative; }
+.tov-item::before { content: '›'; position: absolute; left: 0; font-weight: 600; }
+.tov-card.yes .tov-item::before { color: #27AE60; }
+.tov-card.no .tov-item::before { color: #E74C3C; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="brand-header">
+  <div class="brand-header-left">
+    <div class="brand-doc-label">Identité visuelle & Brand Kit</div>
+    <div class="brand-doc-title">Aqua Nette</div>
+    <div class="brand-doc-sub">Micro-entreprise · Nettoyage de piscines · Var (83) · Version 1.0</div>
+  </div>
+  <div class="logo-showcase">
+    <div class="logo-variant">
+      <span class="logo-main">Aqua Nette</span>
+      <span class="logo-wave-main">〜</span>
+    </div>
+    <div class="logo-sub-main">L'essentiel, bien fait.</div>
+    <div style="margin-top:8px;">
+      <div class="logo-variant">
+        <span class="logo-main logo-sm" style="color:rgba(255,255,255,0.4)">aquanette.fr</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── LOGO ── -->
+  <div class="section">
+    <div class="section-label">01 — Logo & Variantes</div>
+    <div class="section-title">Construire la marque</div>
+
+    <div class="logo-variations">
+      <div class="logo-var-box dark">
+        <div class="ln">
+          <span class="lnt" style="font-size:28px;color:white;letter-spacing:0.02em;">Aqua Nette</span>
+          <span class="lnw" style="color:#3BBFCF;font-size:22px;">〜</span>
+        </div>
+        <div style="font-size:11px;letter-spacing:0.14em;color:rgba(200,237,245,0.5);text-transform:uppercase;font-weight:300;">L'essentiel, bien fait.</div>
+        <div class="logo-var-label">Version principale (fond sombre)</div>
+      </div>
+      <div class="logo-var-box light">
+        <div class="ln">
+          <span class="lnt" style="font-size:28px;color:#0A3D5F;letter-spacing:0.02em;">Aqua Nette</span>
+          <span class="lnw" style="color:#3BBFCF;font-size:22px;">〜</span>
+        </div>
+        <div style="font-size:11px;letter-spacing:0.14em;color:#6B8090;text-transform:uppercase;font-weight:300;">L'essentiel, bien fait.</div>
+        <div class="logo-var-label">Version fond blanc</div>
+      </div>
+      <div class="logo-var-box color">
+        <div class="ln">
+          <span class="lnt" style="font-size:28px;color:#0A3D5F;letter-spacing:0.02em;">AN〜</span>
+        </div>
+        <div style="font-size:11px;letter-spacing:0.14em;color:#6B8090;text-transform:uppercase;font-weight:300;">Version abrégée</div>
+        <div class="logo-var-label">Avatar / icône appli</div>
+      </div>
+    </div>
+
+    <div style="background:#FFF8E7;border-left:3px solid #F4A025;border-radius:0 10px 10px 0;padding:14px 18px;margin-top:20px;font-size:12.5px;color:#7A5C00;line-height:1.6;">
+      <strong>Note typographique :</strong> "Aqua Nette" est toujours en Cormorant Garamond (serif). Le tilde 〜 est en DM Sans, couleur turquoise. La baseline "L'essentiel, bien fait." est en DM Sans 300, espacé, en gris ou turquoise pâle. Ne jamais modifier la casse ni l'espacement.
+    </div>
+  </div>
+
+  <!-- ── COULEURS ── -->
+  <div class="section">
+    <div class="section-label">02 — Palette de couleurs</div>
+    <div class="section-title">Identité chromatique</div>
+
+    <div class="colors-grid">
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#0A3D5F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Bleu Marine</div>
+          <div class="swatch-role">Couleur principale · Autorité</div>
+          <div class="swatch-hex">#0A3D5F</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#1B7AA0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Azur</div>
+          <div class="swatch-role">Couleur secondaire · Confiance</div>
+          <div class="swatch-hex">#1B7AA0</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#3BBFCF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Turquoise</div>
+          <div class="swatch-role">Accent · Fraîcheur · CTA</div>
+          <div class="swatch-hex">#3BBFCF</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#C8EDF5;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Aqua Clair</div>
+          <div class="swatch-role">Backgrounds clairs</div>
+          <div class="swatch-hex">#C8EDF5</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#F2EDE6;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sable</div>
+          <div class="swatch-role">Fond neutre · Chaleur</div>
+          <div class="swatch-hex">#F2EDE6</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#FAFCFD;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blanc Aqua</div>
+          <div class="swatch-role">Fond général · Légèreté</div>
+          <div class="swatch-hex">#FAFCFD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TYPO ── -->
+  <div class="section">
+    <div class="section-label">03 — Typographie</div>
+    <div class="section-title">Deux familles, un caractère</div>
+
+    <div class="typo-showcase">
+      <div class="typo-block">
+        <div class="typo-label">Display — Cormorant Garamond</div>
+        <div class="typo-demo-cormorant" style="font-size:48px;font-weight:300;color:#0A3D5F;line-height:1.1;">Aqua Nette</div>
+        <div class="typo-demo-cormorant" style="font-size:32px;font-weight:300;color:#1B7AA0;margin-top:8px;line-height:1.2;">Votre piscine,<br><em>toujours propre.</em></div>
+        <div class="typo-usage">Utilisation : Titre principal, nom de l'entreprise, accroche, titres de section. Grâce, élégance, terroir méditerranéen.</div>
+      </div>
+      <div class="typo-block">
+        <div class="typo-label">Corps — DM Sans</div>
+        <div class="typo-demo-dm" style="font-size:22px;font-weight:500;color:#0A3D5F;margin-bottom:8px;">Prestations & Tarifs</div>
+        <div class="typo-demo-dm" style="font-size:14px;font-weight:300;color:#6B8090;line-height:1.7;">Entretien régulier, aspiration du fond, nettoyage de la ligne d'eau, contrôle pH. Des gestes simples pour une eau toujours saine.</div>
+        <div class="typo-demo-dm" style="font-size:12px;color:#3BBFCF;margin-top:10px;letter-spacing:0.12em;text-transform:uppercase;">SEILLONS · VAR (83)</div>
+        <div class="typo-usage">Utilisation : Corps de texte, navigations, formulaires, labels. Moderne, lisible, accessible sur tous supports.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+      <div style="background:#0A3D5F;color:white;padding:10px 20px;border-radius:10px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;">Bouton principal</div>
+      <div style="background:#3BBFCF;color:#0A3D5F;padding:10px 20px;border-radius:10px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;">CTA Turquoise</div>
+      <div style="border:1px solid rgba(10,61,95,0.2);color:#0A3D5F;padding:10px 20px;border-radius:10px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:400;">Bouton ghost</div>
+      <div style="background:#E8F7FB;color:#0A3D5F;padding:10px 20px;border-radius:10px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:400;border:1px solid rgba(59,191,207,0.3);">Badge info</div>
+    </div>
+  </div>
+
+  <!-- ── ICÔNES ── -->
+  <div class="section">
+    <div class="section-label">04 — Pictogrammes de service</div>
+    <div class="section-title">Les 6 gestes Aqua Nette</div>
+    <div class="icons-grid">
+      <div class="icon-item"><div class="icon-emoji">🍂</div><div class="icon-label">Surface</div></div>
+      <div class="icon-item"><div class="icon-emoji">🔄</div><div class="icon-label">Aspiration fond</div></div>
+      <div class="icon-item"><div class="icon-emoji">〰️</div><div class="icon-label">Ligne d'eau</div></div>
+      <div class="icon-item"><div class="icon-emoji">🧪</div><div class="icon-label">Contrôle pH</div></div>
+      <div class="icon-item"><div class="icon-emoji">👁️</div><div class="icon-label">Vérif. technique</div></div>
+      <div class="icon-item"><div class="icon-emoji">📱</div><div class="icon-label">Rapport photo</div></div>
+    </div>
+  </div>
+
+  <!-- ── CARTE DE VISITE ── -->
+  <div class="section">
+    <div class="section-label">05 — Carte de visite</div>
+    <div class="section-title">Format 85 × 55 mm</div>
+    <div class="cartes">
+      <div>
+        <div style="font-size:10px;color:#999;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Recto</div>
+        <div class="carte-recto">
+          <div>
+            <div class="cv-logo">Aqua <span>Nette</span> 〜</div>
+          </div>
+          <div>
+            <div class="cv-name">[Votre Prénom & Nom]</div>
+            <div class="cv-role">Nettoyage de piscines · Var</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#999;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Verso</div>
+        <div class="carte-verso">
+          <div class="cv-contacts">
+            <div class="cv-line">📞 <strong>06 XX XX XX XX</strong></div>
+            <div class="cv-line">✉️ <span>contact@aquanette.fr</span></div>
+            <div class="cv-line">🌐 <span>aquanette.fr</span></div>
+            <div class="cv-line">📍 <span>Seillons-Source-d'Argens (83)</span></div>
+          </div>
+          <div class="cv-tagline">L'essentiel, bien fait.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:11.5px;color:#999;margin-top:14px;font-weight:300;">Impression recommandée : 300g/m² mat, recto couleur, verso couleur — Vistaprint, Moo.com ou imprimeur local Aix/Toulon. Budget ~25–40 € pour 250 cartes.</p>
+  </div>
+
+  <!-- ── VÉHICULE ── -->
+  <div class="section">
+    <div class="section-label">06 — Signalétique véhicule</div>
+    <div class="section-title">Panneau magnétique porte</div>
+    <div class="vehicule-mockup">
+      <div class="vehicule-label">Aperçu panneau magnétique</div>
+      <div class="panneau">
+        <div>
+          <div class="panneau-logo">Aqua <span>Nette 〜</span></div>
+        </div>
+        <div class="panneau-sep"></div>
+        <div class="panneau-info">
+          <div class="panneau-service">Nettoyage de piscines · Var</div>
+          <div class="panneau-phone">06 XX XX XX XX</div>
+          <div class="panneau-zone">Seillons · St-Maximin · Rians · Pourrières</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:11.5px;color:#999;margin-top:14px;font-weight:300;">Format conseillé : 60×30 cm ou 80×30 cm. Impression magnétique chez Vistaprint ou Sinalite. Budget : 30–55 €. Placement idéal : portières avant des deux côtés.</p>
+  </div>
+
+  <!-- ── RÉSEAUX SOCIAUX ── -->
+  <div class="section">
+    <div class="section-label">07 — Templates réseaux sociaux</div>
+    <div class="section-title">Facebook & Instagram</div>
+    <div class="reseaux-grid">
+      <div class="post-template">
+        <div class="post-img">
+          <div class="post-type">Nouveau forfait</div>
+          <div class="post-emoji">💧</div>
+          <div class="post-text">Votre piscine,<br>aussi propre que vos vacances.</div>
+        </div>
+        <div class="post-footer">
+          <div class="post-footer-logo">Aqua <span>Nette</span></div>
+          <div class="post-hashtags">#piscine #Var #entretien</div>
+        </div>
+      </div>
+      <div class="post-template">
+        <div class="post-img" style="background:linear-gradient(135deg,#1B7AA0 0%,#3BBFCF 100%);">
+          <div class="post-type">Résidence secondaire</div>
+          <div class="post-emoji">🏠</div>
+          <div class="post-text">Absent tout l'hiver ?<br>On surveille pour vous.</div>
+        </div>
+        <div class="post-footer">
+          <div class="post-footer-logo">Aqua <span>Nette</span></div>
+          <div class="post-hashtags">#residencesecondaire #Seillons</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:11.5px;color:#999;margin-top:16px;font-weight:300;">Format posts : 1080×1080 px (carré). Story/Reels : 1080×1920 px. Utiliser Canva (gratuit) avec les couleurs et polices de la charte pour créer des visuels cohérents.</p>
+  </div>
+
+  <!-- ── TONE OF VOICE ── -->
+  <div class="section">
+    <div class="section-label">08 — Ton de communication</div>
+    <div class="section-title">Comment parler à vos clients</div>
+    <div class="tov-grid">
+      <div class="tov-card yes">
+        <div class="tov-head yes-h">✓ On dit...</div>
+        <div class="tov-item">Simple, concret, sans jargon technique</div>
+        <div class="tov-item">Rassurant pour les résidences secondaires ("on s'occupe de tout")</div>
+        <div class="tov-item">Honnête sur les limites ("pas de grosses interventions")</div>
+        <div class="tov-item">Local et de proximité ("votre voisin de confiance")</div>
+        <div class="tov-item">Sobre et digne, pas "super-promo-choc"</div>
+      </div>
+      <div class="tov-card no">
+        <div class="tov-head no-h">✗ On évite...</div>
+        <div class="tov-item">Les termes techniques piscinistes (bâche hiver, PAC, filtration DE...)</div>
+        <div class="tov-item">Les promesses impossibles ("piscine comme neuve")</div>
+        <div class="tov-item">Le ton commercial agressif ou les remises permanentes</div>
+        <div class="tov-item">Les fautes d'orthographe (soignez vos SMS clients)</div>
+        <div class="tov-item">Promettre ce qu'on ne fait pas (remise en route compliquée, traitement algues)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
