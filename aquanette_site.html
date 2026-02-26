@@ -32,7 +32,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -89,7 +88,6 @@ nav ul a:hover { color: var(--bleu); }
 }
 .nav-cta:hover { background: var(--azure) !important; transform: translateY(-1px); }
 
-/* ── HERO ── */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -133,6 +131,7 @@ nav ul a:hover { color: var(--bleu); }
   margin-bottom: 12px;
   opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
 }
+
 .hero-title em {
   font-style: italic;
   color: var(--turquoise);
@@ -199,7 +198,6 @@ nav ul a:hover { color: var(--bleu); }
 }
 .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--turquoise); flex-shrink: 0; }
 
-/* HERO RIGHT */
 .hero-right {
   background: var(--eau);
   display: flex; align-items: center; justify-content: center;
@@ -213,7 +211,6 @@ nav ul a:hover { color: var(--bleu); }
   opacity: 0; animation: fadeIn 1.2s 0.6s forwards;
 }
 
-/* Pool illustration */
 .pool-container {
   width: 100%;
   aspect-ratio: 4/3;
@@ -230,7 +227,6 @@ nav ul a:hover { color: var(--bleu); }
   display: flex; align-items: center; justify-content: center;
 }
 
-/* Animated water ripples */
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -246,7 +242,6 @@ nav ul a:hover { color: var(--bleu); }
   100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* Water shimmer */
 .water-shimmer {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(
@@ -268,7 +263,6 @@ nav ul a:hover { color: var(--bleu); }
   filter: blur(0px);
 }
 
-/* Pool overlay text */
 .pool-overlay {
   position: absolute; bottom: 24px; left: 24px; right: 24px;
   background: rgba(10,61,95,0.7);
@@ -284,7 +278,6 @@ nav ul a:hover { color: var(--bleu); }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #5DD67A; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* Floating cards */
 .float-card {
   position: absolute;
   background: white;
@@ -305,7 +298,6 @@ nav ul a:hover { color: var(--bleu); }
 .card-label { font-size: 11px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.08em; }
 .card-value { font-size: 14px; font-weight: 500; color: var(--bleu); margin-top: 2px; }
 
-/* ── SECTION: SERVICES ── */
 .section { padding: 100px 60px; }
 .section-center { max-width: 1100px; margin: 0 auto; }
 
@@ -382,7 +374,6 @@ nav ul a:hover { color: var(--bleu); }
   font-weight: 300;
 }
 
-/* What we don't do */
 .not-included {
   background: var(--eau);
   border-radius: 20px;
@@ -394,7 +385,6 @@ nav ul a:hover { color: var(--bleu); }
 .not-included-title { font-size: 14px; font-weight: 500; color: var(--bleu); margin-bottom: 6px; }
 .not-included-desc { font-size: 13px; color: var(--gris); line-height: 1.6; font-weight: 300; }
 
-/* ── TARIFS ── */
 .tarifs-bg { background: var(--bleu); }
 
 .tarifs-grid {
@@ -480,7 +470,6 @@ nav ul a:hover { color: var(--bleu); }
 }
 .tarif-cta:hover, .tarif-card.featured .tarif-cta { background: var(--turquoise); color: var(--bleu); font-weight: 500; }
 
-/* ── ZONE ── */
 .zone-section { background: var(--sable); }
 .zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
@@ -511,7 +500,6 @@ nav ul a:hover { color: var(--bleu); }
   overflow: hidden;
 }
 
-/* Simple abstract map dots */
 .map-dot {
   position: absolute;
   width: 10px; height: 10px;
@@ -535,7 +523,6 @@ nav ul a:hover { color: var(--bleu); }
   top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
-/* ── CONTACT ── */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
 .contact-info { padding-top: 10px; }
@@ -580,6 +567,7 @@ nav ul a:hover { color: var(--bleu); }
   color: var(--texte);
   outline: none;
   transition: border 0.2s, box-shadow 0.2s;
+  appearance: none;
   -webkit-appearance: none;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -605,7 +593,6 @@ nav ul a:hover { color: var(--bleu); }
 }
 .form-submit:hover { background: var(--azure); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,61,95,0.25); }
 
-/* ── FOOTER ── */
 footer {
   background: var(--texte);
   padding: 50px 60px;
@@ -622,7 +609,6 @@ footer {
 .footer-links a:hover { color: var(--turquoise); }
 .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
@@ -632,14 +618,12 @@ footer {
   to { opacity: 1; }
 }
 
-/* Scroll animations */
 .reveal {
   opacity: 0; transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   nav ul { display: none; }
@@ -651,7 +635,6 @@ footer {
   .float-card { display: none; }
 }
 
-/* Divider wave */
 .wave-divider {
   width: 100%; overflow: hidden; line-height: 0;
   background: var(--bleu);
@@ -661,7 +644,6 @@ footer {
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">
     <span class="logo-text">Aqua Nette</span>
@@ -676,7 +658,6 @@ footer {
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">Var · Seillons-Source-d'Argens</p>
@@ -736,7 +717,6 @@ footer {
   </div>
 </section>
 
-<!-- SERVICES -->
 <section class="section" id="services">
   <div class="section-center">
     <p class="section-label reveal">Ce qu'on fait</p>
@@ -786,14 +766,12 @@ footer {
   </div>
 </section>
 
-<!-- WAVE -->
 <div class="wave-divider" style="background:var(--blanc);">
   <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#0A3D5F"/>
   </svg>
 </div>
 
-<!-- TARIFS -->
 <section class="section tarifs-bg" id="tarifs">
   <div class="section-center">
     <p class="section-label reveal" style="color:var(--turquoise)">Forfaits</p>
@@ -849,14 +827,12 @@ footer {
   </div>
 </section>
 
-<!-- WAVE reverse -->
 <div class="wave-divider" style="background:var(--sable);">
   <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#0A3D5F"/>
   </svg>
 </div>
 
-<!-- ZONE -->
 <section class="section zone-section" id="zone">
   <div class="section-center">
     <div class="zone-grid">
@@ -881,7 +857,6 @@ footer {
       <div>
         <div class="map-visual reveal">
           <div class="map-radius"></div>
-          <!-- Abstract dots representing village locations -->
           <div class="map-dot center" data-name="Seillons" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
           <div class="map-dot" data-name="St-Maximin" style="top:38%;left:34%"></div>
           <div class="map-dot" data-name="Pourrières" style="top:42%;left:62%"></div>
@@ -895,7 +870,6 @@ footer {
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="section" id="contact">
   <div class="section-center">
     <div class="contact-grid">
@@ -983,7 +957,6 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">Aqua <span>Nette</span> 〜</div>
@@ -998,7 +971,6 @@ footer {
 </footer>
 
 <script>
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
@@ -1009,13 +981,11 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
 
-// Nav scroll effect
 window.addEventListener('scroll', () => {
   document.querySelector('nav').style.boxShadow =
     window.scrollY > 50 ? '0 4px 30px rgba(10,61,95,0.1)' : 'none';
 });
 
-// Form submit
 document.querySelector('.form-submit').addEventListener('click', () => {
   const btn = document.querySelector('.form-submit');
   btn.textContent = '✓ Message envoyé !';
