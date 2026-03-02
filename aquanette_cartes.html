@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Aqua Nette — Cartes de Visite</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bleu:#0A3D5F;--azure:#1B7AA0;--turquoise:#3BBFCF;--eau:#E8F7FB;--blanc:#FAFCFD;--gris:#6B8090;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#EFEFED;padding:40px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.page-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#999;}
+.edit-panel{width:100%;max-width:860px;background:white;border-radius:20px;padding:26px 30px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.edit-title{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--turquoise);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.edit-title::after{content:'';flex:1;height:1px;background:rgba(59,191,207,.2);}
+.fields-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.field-group{display:flex;flex-direction:column;gap:5px;}
+.field-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);}
+.field-input{border:1.5px solid rgba(10,61,95,.12);border-radius:10px;padding:9px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--bleu);outline:none;transition:border .2s,box-shadow .2s;background:var(--blanc);}
+.field-input:focus{border-color:var(--turquoise);box-shadow:0 0 0 3px rgba(59,191,207,.12);}
+.update-btn{margin-top:16px;background:var(--bleu);color:white;border:none;padding:11px 26px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s;}
+.update-btn:hover{background:var(--azure);}
+.model-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-top:8px;}
+.cartes-wrapper{display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;justify-content:center;width:100%;max-width:860px;}
+.carte-block{display:flex;flex-direction:column;gap:8px;align-items:center;}
+.carte-block-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#999;}
+
+.carte-recto{width:323px;height:189px;border-radius:14px;background:var(--bleu);position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(10,61,95,.3),0 4px 12px rgba(0,0,0,.12);flex-shrink:0;}
+.cr-circle-1{position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(59,191,207,.1);}
+.cr-circle-2{position:absolute;bottom:-60px;left:-40px;width:160px;height:160px;border-radius:50%;background:rgba(27,122,160,.15);}
+.cr-line{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--turquoise),transparent);}
+.cr-content{position:relative;z-index:2;padding:22px 24px;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
+.cr-logo-text{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:white;letter-spacing:.02em;}
+.cr-logo-wave{color:var(--turquoise);font-size:16px;}
+.cr-logo-tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,237,245,.4);font-weight:300;margin-top:2px;}
+.cr-name{font-size:14px;font-weight:500;color:white;}
+.cr-role{font-size:10px;color:rgba(200,237,245,.55);font-weight:300;margin-top:2px;letter-spacing:.04em;}
+.carte-verso{width:323px;height:189px;border-radius:14px;background:var(--blanc);border:1.5px solid rgba(59,191,207,.25);position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(10,61,95,.1),0 4px 12px rgba(0,0,0,.05);flex-shrink:0;}
+.cv-content{position:relative;z-index:2;padding:20px 24px;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
+.cv-top{display:flex;align-items:center;justify-content:space-between;}
+.cv-logo-sm{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--bleu);}
+.cv-logo-sm span{color:var(--turquoise);}
+.cv-qr{width:46px;height:46px;border:1.5px dashed rgba(10,61,95,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:rgba(10,61,95,.3);text-align:center;line-height:1.3;background:rgba(10,61,95,.03);}
+.cv-contacts{display:flex;flex-direction:column;gap:5px;}
+.cv-line{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--bleu);}
+.cv-line-sub{color:var(--gris);font-size:10.5px;}
+.cv-tagline{font-family:'Cormorant Garamond',serif;font-size:12.5px;font-style:italic;color:var(--azure);}
+.sep{width:100%;max-width:860px;height:1px;background:rgba(0,0,0,.08);margin:4px 0;}
+.info-box{width:100%;max-width:860px;background:#FFF8E7;border-left:3px solid #F4A025;border-radius:0 12px 12px 0;padding:13px 18px;font-size:12px;color:#7A5C00;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="page-label">Aqua Nette — Cartes de visite 85×55 mm · 3 modèles · Modifiables</div>
+
+<div class="edit-panel">
+  <div class="edit-title">Personnalise tes informations</div>
+  <div class="fields-grid">
+    <div class="field-group"><label class="field-label">Prénom &amp; Nom</label><input class="field-input" id="inp-name" value="Prénom Nom"></div>
+    <div class="field-group"><label class="field-label">Titre / rôle</label><input class="field-input" id="inp-role" value="Nettoyage de piscines · Var"></div>
+    <div class="field-group"><label class="field-label">Téléphone</label><input class="field-input" id="inp-phone" value="06 XX XX XX XX"></div>
+    <div class="field-group"><label class="field-label">Email</label><input class="field-input" id="inp-email" value="contact@aquanette.fr"></div>
+    <div class="field-group"><label class="field-label">Site web</label><input class="field-input" id="inp-web" value="aquanette.fr"></div>
+    <div class="field-group"><label class="field-label">Localisation</label><input class="field-input" id="inp-loc" value="Seillons-Source-d'Argens, 83"></div>
+  </div>
+  <button class="update-btn" onclick="updateCards()">Mettre à jour les cartes →</button>
+</div>
+
+<div class="model-label">Modèle 1 — Marine classique</div>
+<div class="cartes-wrapper">
+  <div class="carte-block">
+    <div class="carte-block-label">Recto</div>
+    <div class="carte-recto">
+      <div class="cr-circle-1"></div><div class="cr-circle-2"></div><div class="cr-line"></div>
+      <svg style="position:absolute;bottom:0;left:0;right:0;" viewBox="0 0 323 70" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,35 C80,15 160,55 240,30 C290,15 310,35 323,27 L323,70 L0,70 Z" fill="rgba(59,191,207,0.07)"/>
+      </svg>
+      <svg style="position:absolute;right:20px;top:50%;transform:translateY(-50%);opacity:0.06;" width="55" height="73" viewBox="0 0 60 80">
+        <path d="M30,2 C30,2 4,32 4,50 C4,64 15,76 30,76 C45,76 56,64 56,50 C56,32 30,2 30,2 Z" fill="white"/>
+      </svg>
+      <div class="cr-content">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><span class="cr-logo-text">Aqua Nette</span><span class="cr-logo-wave">〜</span></div>
+          <div class="cr-logo-tag">L'essentiel, bien fait.</div>
+        </div>
+        <div><div class="cr-name" id="n1">Prénom Nom</div><div class="cr-role" id="r1">Nettoyage de piscines · Var</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="carte-block">
+    <div class="carte-block-label">Verso</div>
+    <div class="carte-verso">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3BBFCF,#1B7AA0);z-index:3;border-radius:14px 14px 0 0;"></div>
+      <svg style="position:absolute;bottom:0;left:0;right:0;opacity:.07;" viewBox="0 0 323 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C80,20 160,60 240,35 C290,20 310,40 323,32 L323,80 L0,80 Z" fill="#0A3D5F"/>
+      </svg>
+      <div class="cv-content">
+        <div class="cv-top"><div class="cv-logo-sm">Aqua <span>Nette 〜</span></div><div class="cv-qr">QR<br>Code</div></div>
+        <div class="cv-contacts">
+          <div class="cv-line">📞 <span id="p1">06 XX XX XX XX</span></div>
+          <div class="cv-line cv-line-sub">✉️ <span id="e1">contact@aquanette.fr</span></div>
+          <div class="cv-line cv-line-sub">🌐 <span id="w1">aquanette.fr</span></div>
+          <div class="cv-line cv-line-sub">📍 <span id="l1">Seillons-Source-d'Argens, 83</span></div>
+        </div>
+        <div class="cv-tagline">L'essentiel, bien fait.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<div class="model-label">Modèle 2 — Gradient azur</div>
+<div class="cartes-wrapper">
+  <div class="carte-block">
+    <div class="carte-block-label">Recto</div>
+    <div class="carte-recto" style="background:linear-gradient(135deg,#1B7AA0 0%,#3BBFCF 100%);">
+      <div class="cr-circle-1" style="background:rgba(255,255,255,.12);"></div>
+      <div class="cr-circle-2" style="background:rgba(10,61,95,.12);"></div>
+      <div class="cr-line" style="background:linear-gradient(to bottom,transparent,rgba(255,255,255,.4),transparent);"></div>
+      <svg style="position:absolute;right:20px;top:50%;transform:translateY(-50%);opacity:0.1;" width="55" height="73" viewBox="0 0 60 80">
+        <path d="M30,2 C30,2 4,32 4,50 C4,64 15,76 30,76 C45,76 56,64 56,50 C56,32 30,2 30,2 Z" fill="white"/>
+      </svg>
+      <div class="cr-content">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><span class="cr-logo-text">Aqua Nette</span><span class="cr-logo-wave" style="color:rgba(255,255,255,.8);">〜</span></div>
+          <div class="cr-logo-tag" style="color:rgba(255,255,255,.5);">L'essentiel, bien fait.</div>
+        </div>
+        <div><div class="cr-name" id="n2">Prénom Nom</div><div class="cr-role" id="r2" style="color:rgba(255,255,255,.6);">Nettoyage de piscines · Var</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="carte-block">
+    <div class="carte-block-label">Verso</div>
+    <div class="carte-verso" style="background:var(--bleu);border-color:rgba(59,191,207,.3);">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1B7AA0,#3BBFCF);z-index:3;border-radius:14px 14px 0 0;"></div>
+      <div class="cv-content">
+        <div class="cv-top"><div class="cv-logo-sm" style="color:white;">Aqua <span>Nette 〜</span></div><div class="cv-qr" style="border-color:rgba(59,191,207,.3);color:rgba(200,237,245,.35);background:rgba(59,191,207,.07);">QR<br>Code</div></div>
+        <div class="cv-contacts">
+          <div class="cv-line" style="color:white;">📞 <span id="p2">06 XX XX XX XX</span></div>
+          <div class="cv-line" style="color:rgba(200,237,245,.7);">✉️ <span id="e2">contact@aquanette.fr</span></div>
+          <div class="cv-line" style="color:rgba(200,237,245,.7);">🌐 <span id="w2">aquanette.fr</span></div>
+          <div class="cv-line" style="color:rgba(200,237,245,.5);">📍 <span id="l2">Seillons-Source-d'Argens, 83</span></div>
+        </div>
+        <div class="cv-tagline" style="color:var(--turquoise);">L'essentiel, bien fait.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<div class="model-label">Modèle 3 — Épuré blanc</div>
+<div class="cartes-wrapper">
+  <div class="carte-block">
+    <div class="carte-block-label">Recto</div>
+    <div class="carte-recto" style="background:white;border:1.5px solid rgba(10,61,95,.1);">
+      <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0A3D5F,#3BBFCF);z-index:3;"></div>
+      <svg style="position:absolute;right:20px;top:50%;transform:translateY(-50%);opacity:0.05;" width="55" height="73" viewBox="0 0 60 80">
+        <path d="M30,2 C30,2 4,32 4,50 C4,64 15,76 30,76 C45,76 56,64 56,50 C56,32 30,2 30,2 Z" fill="#0A3D5F"/>
+      </svg>
+      <div class="cr-content">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><span class="cr-logo-text" style="color:var(--bleu);">Aqua Nette</span><span class="cr-logo-wave">〜</span></div>
+          <div class="cr-logo-tag" style="color:var(--gris);">L'essentiel, bien fait.</div>
+        </div>
+        <div><div class="cr-name" id="n3" style="color:var(--bleu);">Prénom Nom</div><div class="cr-role" id="r3" style="color:var(--gris);">Nettoyage de piscines · Var</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="carte-block">
+    <div class="carte-block-label">Verso</div>
+    <div class="carte-verso" style="background:var(--eau);">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0A3D5F,#3BBFCF);z-index:3;border-radius:14px 14px 0 0;"></div>
+      <div class="cv-content">
+        <div class="cv-top"><div class="cv-logo-sm" style="color:var(--bleu);">Aqua <span>Nette 〜</span></div><div class="cv-qr">QR<br>Code</div></div>
+        <div class="cv-contacts">
+          <div class="cv-line">📞 <span id="p3">06 XX XX XX XX</span></div>
+          <div class="cv-line cv-line-sub">✉️ <span id="e3">contact@aquanette.fr</span></div>
+          <div class="cv-line cv-line-sub">🌐 <span id="w3">aquanette.fr</span></div>
+          <div class="cv-line cv-line-sub">📍 <span id="l3">Seillons-Source-d'Argens, 83</span></div>
+        </div>
+        <div class="cv-tagline">L'essentiel, bien fait.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="info-box">
+  🖨️ <strong>Impression :</strong> Format 85×55 mm standard. Recommandé : 350g/m² mat ou pelliculage soft-touch. Budget ~25–40 € pour 250 cartes chez Vistaprint ou Moo.com. Pour le QR Code, générer gratuitement sur qr-code-generator.com et l'ajouter dans la case prévue. Remplis le formulaire en haut et clique "Mettre à jour" pour personaliser toutes les cartes en un clic.
+</div>
+
+<script>
+function updateCards(){
+  const v={name:document.getElementById('inp-name').value||'Prénom Nom',role:document.getElementById('inp-role').value||'Nettoyage de piscines · Var',phone:document.getElementById('inp-phone').value||'06 XX XX XX XX',email:document.getElementById('inp-email').value||'contact@aquanette.fr',web:document.getElementById('inp-web').value||'aquanette.fr',loc:document.getElementById('inp-loc').value||"Seillons-Source-d'Argens, 83"};
+  for(let i=1;i<=3;i++){document.getElementById('n'+i).textContent=v.name;document.getElementById('r'+i).textContent=v.role;document.getElementById('p'+i).textContent=v.phone;document.getElementById('e'+i).textContent=v.email;document.getElementById('w'+i).textContent=v.web;document.getElementById('l'+i).textContent=v.loc;}
+  const btn=document.querySelector('.update-btn');btn.textContent='✓ Cartes mises à jour !';btn.style.background='#27AE60';setTimeout(()=>{btn.textContent='Mettre à jour les cartes →';btn.style.background='';},2000);
+}
+document.querySelectorAll('.field-input').forEach(inp=>inp.addEventListener('keyup',e=>{if(e.key==='Enter')updateCards();}));
+</script>
+</body>
+</html>
