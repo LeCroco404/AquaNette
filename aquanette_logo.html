@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqua Nette — Logo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bleu: #0A3D5F;
+  --azure: #1B7AA0;
+  --turquoise: #3BBFCF;
+  --eau: #E8F7FB;
+  --blanc: #FAFCFD;
+  --gris: #6B8090;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #EFEFED;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.section-block {
+  width: 100%;
+  max-width: 860px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.block-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+  padding: 18px 28px 0;
+}
+.block-inner {
+  padding: 28px 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.block-inner.dark { background: var(--bleu); }
+.block-inner.mid { background: var(--azure); }
+.block-inner.light-bg { background: var(--eau); }
+.block-inner.sand { background: #F2EDE6; }
+.block-inner.white { background: white; }
+
+/* ── EXPORT NOTE ── */
+.export-note {
+  width: 100%;
+  max-width: 860px;
+  background: #FFF8E7;
+  border-left: 3px solid #F4A025;
+  border-radius: 0 12px 12px 0;
+  padding: 14px 20px;
+  font-size: 12px;
+  color: #7A5C00;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="page-title">Aqua Nette — Logo & Variations · Brand Kit</div>
+
+<div class="section-block">
+  <div class="block-label">Logo principal — Fond blanc</div>
+  <div class="block-inner white" style="padding:48px 40px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120">
+      <defs>
+        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#1B7AA0"/>
+          <stop offset="100%" style="stop-color:#3BBFCF"/>
+        </linearGradient>
+        <linearGradient id="dropGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#3BBFCF"/>
+          <stop offset="100%" style="stop-color:#1B7AA0"/>
+        </linearGradient>
+        <clipPath id="dropClip">
+          <path d="M46,12 C46,12 22,38 22,54 C22,67.3 32.7,78 46,78 C59.3,78 70,67.3 70,54 C70,38 46,12 46,12 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M46,10 C46,10 20,38 20,55 C20,69.3 31.7,81 46,81 C60.3,81 72,69.3 72,55 C72,38 46,10 46,10 Z"
+            fill="url(#dropGrad)" opacity="0.15"/>
+      <path d="M46,10 C46,10 20,38 20,55 C20,69.3 31.7,81 46,81 C60.3,81 72,69.3 72,55 C72,38 46,10 46,10 Z"
+            fill="none" stroke="url(#waveGrad)" stroke-width="2.5"/>
+      <g clip-path="url(#dropClip)">
+        <path d="M14,58 C22,52 30,64 38,58 C46,52 54,64 62,58 C70,52 76,58 80,55 L80,90 L14,90 Z"
+              fill="url(#waveGrad)" opacity="0.7"/>
+        <path d="M14,62 C22,56 30,68 38,62 C46,56 54,68 62,62 C70,56 76,62 80,59 L80,90 L14,90 Z"
+              fill="url(#dropGrad)" opacity="0.5"/>
+      </g>
+
+      <ellipse cx="38" cy="34" rx="4" ry="7" fill="white" opacity="0.4" transform="rotate(-20,38,34)"/>
+
+      <path d="M26,88 C31,84 36,92 41,88 C46,84 51,92 56,88 C61,84 64,88 66,86"
+            fill="none" stroke="url(#waveGrad)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+      <text x="88" y="56"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="46"
+            font-weight="600"
+            fill="#0A3D5F"
+            letter-spacing="1">Aqua</text>
+
+      <path d="M217,42 C221,36 226,36 230,42 C234,48 239,48 243,42"
+            fill="none" stroke="#3BBFCF" stroke-width="2.5" stroke-linecap="round"/>
+
+      <text x="250" y="56"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="46"
+            font-weight="300"
+            fill="#1B7AA0"
+            letter-spacing="1">Nette</text>
+      <line x1="88" y1="64" x2="388" y2="64" stroke="#3BBFCF" stroke-width="0.8" opacity="0.4"/>
+
+      <text x="88" y="82"
+            font-family="DM Sans, Arial, sans-serif"
+            font-size="11"
+            font-weight="300"
+            fill="#6B8090"
+            letter-spacing="3">L'ESSENTIEL, BIEN FAIT.</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section-block">
+  <div class="block-label">Logo — Fond sombre (usage principal communication)</div>
+  <div class="block-inner dark" style="padding:48px 40px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120">
+      <defs>
+        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#3BBFCF"/>
+          <stop offset="100%" style="stop-color:#7DD9E8"/>
+        </linearGradient>
+        <linearGradient id="dropGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#5ECFDE"/>
+          <stop offset="100%" style="stop-color:#3BBFCF"/>
+        </linearGradient>
+        <clipPath id="dropClip2">
+          <path d="M46,12 C46,12 22,38 22,54 C22,67.3 32.7,78 46,78 C59.3,78 70,67.3 70,54 C70,38 46,12 46,12 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M46,10 C46,10 20,38 20,55 C20,69.3 31.7,81 46,81 C60.3,81 72,69.3 72,55 C72,38 46,10 46,10 Z"
+            fill="rgba(59,191,207,0.15)"/>
+      <path d="M46,10 C46,10 20,38 20,55 C20,69.3 31.7,81 46,81 C60.3,81 72,69.3 72,55 C72,38 46,10 46,10 Z"
+            fill="none" stroke="#3BBFCF" stroke-width="2.5"/>
+      <g clip-path="url(#dropClip2)">
+        <path d="M14,58 C22,52 30,64 38,58 C46,52 54,64 62,58 C70,52 76,58 80,55 L80,90 L14,90 Z"
+              fill="#3BBFCF" opacity="0.6"/>
+        <path d="M14,63 C22,57 30,69 38,63 C46,57 54,69 62,63 C70,57 76,63 80,60 L80,90 L14,90 Z"
+              fill="#3BBFCF" opacity="0.35"/>
+      </g>
+      <ellipse cx="38" cy="34" rx="4" ry="7" fill="white" opacity="0.3" transform="rotate(-20,38,34)"/>
+      <path d="M26,88 C31,84 36,92 41,88 C46,84 51,92 56,88 C61,84 64,88 66,86"
+            fill="none" stroke="#3BBFCF" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <text x="88" y="56"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="46" font-weight="600" fill="white" letter-spacing="1">Aqua</text>
+      <path d="M217,42 C221,36 226,36 230,42 C234,48 239,48 243,42"
+            fill="none" stroke="#3BBFCF" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="250" y="56"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="46" font-weight="300" fill="rgba(200,237,245,0.9)" letter-spacing="1">Nette</text>
+      <line x1="88" y1="64" x2="388" y2="64" stroke="#3BBFCF" stroke-width="0.8" opacity="0.3"/>
+      <text x="88" y="82"
+            font-family="DM Sans, Arial, sans-serif"
+            font-size="11" font-weight="300" fill="rgba(200,237,245,0.5)" letter-spacing="3">L'ESSENTIEL, BIEN FAIT.</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section-block">
+  <div class="block-label">Icône seule — Avatar, favicon, app</div>
+  <div class="block-inner white" style="gap:32px; flex-wrap:wrap; justify-content:center; padding:36px;">
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <defs>
+          <linearGradient id="ig1" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#3BBFCF"/>
+            <stop offset="100%" style="stop-color:#0A3D5F"/>
+          </linearGradient>
+          <clipPath id="ic1">
+            <path d="M50,8 C50,8 18,42 18,62 C18,79.7 32.3,94 50,94 C67.7,94 82,79.7 82,62 C82,42 50,8 50,8 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M50,8 C50,8 18,42 18,62 C18,79.7 32.3,94 50,94 C67.7,94 82,79.7 82,62 C82,42 50,8 50,8 Z"
+              fill="url(#ig1)" opacity="0.12"/>
+        <path d="M50,8 C50,8 18,42 18,62 C18,79.7 32.3,94 50,94 C67.7,94 82,79.7 82,62 C82,42 50,8 50,8 Z"
+              fill="none" stroke="#1B7AA0" stroke-width="3"/>
+        <g clip-path="url(#ic1)">
+          <path d="M10,66 C20,58 32,74 44,66 C56,58 68,74 80,66 C88,60 92,66 96,63 L96,100 L10,100 Z"
+                fill="#3BBFCF" opacity="0.75"/>
+          <path d="M10,72 C20,64 32,80 44,72 C56,64 68,80 80,72 C88,66 92,72 96,69 L96,100 L10,100 Z"
+                fill="#0A3D5F" opacity="0.4"/>
+        </g>
+        <ellipse cx="40" cy="36" rx="5" ry="9" fill="white" opacity="0.35" transform="rotate(-20,40,36)"/>
+
+        <text x="50" y="52" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600"
+              fill="#0A3D5F" text-anchor="middle" opacity="0.7">AN</text>
+      </svg>
+      <span style="font-size:10px;color:#999;letter-spacing:0.08em;text-transform:uppercase;">100x100 · fond blanc</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <rect width="100" height="100" rx="22" fill="#0A3D5F"/>
+        <defs>
+          <clipPath id="ic2">
+            <path d="M50,12 C50,12 22,42 22,60 C22,75.7 34.3,88 50,88 C65.7,88 78,75.7 78,60 C78,42 50,12 50,12 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M50,12 C50,12 22,42 22,60 C22,75.7 34.3,88 50,88 C65.7,88 78,75.7 78,60 C78,42 50,12 50,12 Z"
+              fill="rgba(59,191,207,0.2)"/>
+        <path d="M50,12 C50,12 22,42 22,60 C22,75.7 34.3,88 50,88 C65.7,88 78,75.7 78,60 C78,42 50,12 50,12 Z"
+              fill="none" stroke="#3BBFCF" stroke-width="2.5"/>
+        <g clip-path="url(#ic2)">
+          <path d="M12,64 C22,56 34,72 46,64 C58,56 70,72 82,64 C88,60 92,64 94,62 L94,96 L12,96 Z"
+                fill="#3BBFCF" opacity="0.7"/>
+          <path d="M12,70 C22,62 34,78 46,70 C58,62 70,78 82,70 C88,66 92,70 94,68 L94,96 L12,96 Z"
+                fill="#3BBFCF" opacity="0.35"/>
+        </g>
+        <ellipse cx="40" cy="36" rx="4" ry="8" fill="white" opacity="0.3" transform="rotate(-20,40,36)"/>
+        <text x="50" y="52" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600"
+              fill="white" text-anchor="middle" opacity="0.8">AN</text>
+      </svg>
+      <span style="font-size:10px;color:#999;letter-spacing:0.08em;text-transform:uppercase;">Carré arrondi</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <circle cx="50" cy="50" r="48" fill="#3BBFCF"/>
+        <defs>
+          <clipPath id="ic3">
+            <path d="M50,14 C50,14 26,40 26,57 C26,70.8 36.7,82 50,82 C63.3,82 74,70.8 74,57 C74,40 50,14 50,14 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M50,14 C50,14 26,40 26,57 C26,70.8 36.7,82 50,82 C63.3,82 74,70.8 74,57 C74,40 50,14 50,14 Z"
+              fill="rgba(255,255,255,0.25)"/>
+        <path d="M50,14 C50,14 26,40 26,57 C26,70.8 36.7,82 50,82 C63.3,82 74,70.8 74,57 C74,40 50,14 50,14 Z"
+              fill="none" stroke="white" stroke-width="2"/>
+        <g clip-path="url(#ic3)">
+          <path d="M14,61 C24,53 36,69 48,61 C60,53 70,69 82,61 C88,57 92,61 92,59 L92,90 L14,90 Z"
+                fill="white" opacity="0.45"/>
+        </g>
+        <ellipse cx="41" cy="36" rx="3.5" ry="7" fill="white" opacity="0.5" transform="rotate(-20,41,36)"/>
+        <text x="50" y="52" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600"
+              fill="#0A3D5F" text-anchor="middle">AN</text>
+      </svg>
+      <span style="font-size:10px;color:#999;letter-spacing:0.08em;text-transform:uppercase;">Cercle</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+        <rect width="32" height="32" rx="7" fill="#0A3D5F"/>
+        <defs>
+          <clipPath id="ic4">
+            <path d="M16,3 C16,3 7,13 7,19 C7,23.4 11.1,27 16,27 C20.9,27 25,23.4 25,19 C25,13 16,3 16,3 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M16,3 C16,3 7,13 7,19 C7,23.4 11.1,27 16,27 C20.9,27 25,23.4 25,19 C25,13 16,3 16,3 Z"
+              fill="rgba(59,191,207,0.2)"/>
+        <path d="M16,3 C16,3 7,13 7,19 C7,23.4 11.1,27 16,27 C20.9,27 25,23.4 25,19 C25,13 16,3 16,3 Z"
+              fill="none" stroke="#3BBFCF" stroke-width="1.5"/>
+        <g clip-path="url(#ic4)">
+          <path d="M4,21 C8,17 12,23 16,19 C20,15 24,21 28,17 L28,32 L4,32 Z"
+                fill="#3BBFCF" opacity="0.7"/>
+        </g>
+      </svg>
+      <span style="font-size:10px;color:#999;letter-spacing:0.08em;text-transform:uppercase;">Favicon 32px</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-block">
+  <div class="block-label">Version compacte — En-tête document, signature email</div>
+  <div class="block-inner white" style="flex-direction:column; gap:20px; align-items:flex-start; padding:36px 48px;">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 44" width="280" height="44">
+      <defs>
+        <linearGradient id="cg1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#3BBFCF"/>
+          <stop offset="100%" style="stop-color:#1B7AA0"/>
+        </linearGradient>
+        <clipPath id="cc1">
+          <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"
+            fill="url(#cg1)" opacity="0.15"/>
+      <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"
+            fill="none" stroke="url(#cg1)" stroke-width="1.8"/>
+      <g clip-path="url(#cc1)">
+        <path d="M2,24 C7,20 12,28 17,24 C22,20 26,27 30,23 L30,36 L2,36 Z" fill="#3BBFCF" opacity="0.6"/>
+      </g>
+      <ellipse cx="13" cy="13" rx="2" ry="4" fill="white" opacity="0.4" transform="rotate(-20,13,13)"/>
+      <text x="36" y="26"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="28" font-weight="600" fill="#0A3D5F" letter-spacing="0.5">Aqua</text>
+      <path d="M115,18 C118,13 122,13 125,18 C128,23 132,23 135,18"
+            fill="none" stroke="#3BBFCF" stroke-width="2" stroke-linecap="round"/>
+      <text x="141" y="26"
+            font-family="Cormorant Garamond, Georgia, serif"
+            font-size="28" font-weight="300" fill="#1B7AA0" letter-spacing="0.5">Nette</text>
+    </svg>
+
+    <div style="background:#0A3D5F;padding:14px 20px;border-radius:12px;display:inline-block;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 44" width="280" height="44">
+        <defs>
+          <clipPath id="cc2">
+            <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"
+              fill="rgba(59,191,207,0.2)"/>
+        <path d="M17,3 C17,3 6,15 6,22 C6,28.1 11,33 17,33 C23,33 28,28.1 28,22 C28,15 17,3 17,3 Z"
+              fill="none" stroke="#3BBFCF" stroke-width="1.8"/>
+        <g clip-path="url(#cc2)">
+          <path d="M2,24 C7,20 12,28 17,24 C22,20 26,27 30,23 L30,36 L2,36 Z" fill="#3BBFCF" opacity="0.65"/>
+        </g>
+        <ellipse cx="13" cy="13" rx="2" ry="4" fill="white" opacity="0.35" transform="rotate(-20,13,13)"/>
+        <text x="36" y="26"
+              font-family="Cormorant Garamond, Georgia, serif"
+              font-size="28" font-weight="600" fill="white" letter-spacing="0.5">Aqua</text>
+        <path d="M115,18 C118,13 122,13 125,18 C128,23 132,23 135,18"
+              fill="none" stroke="#3BBFCF" stroke-width="2" stroke-linecap="round"/>
+        <text x="141" y="26"
+              font-family="Cormorant Garamond, Georgia, serif"
+              font-size="28" font-weight="300" fill="rgba(200,237,245,0.9)" letter-spacing="0.5">Nette</text>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<div class="export-note">
+  💾 <strong>Pour récupérer les logos :</strong> Clic droit sur un logo → "Enregistrer l'image sous" pour l'exporter en PNG. Pour un SVG vectoriel (imprimeur, panneau véhicule), ouvrir le code source de cette page et copier chaque balise <code>&lt;svg&gt;...&lt;/svg&gt;</code> dans un fichier <code>.svg</code>. Les logos sont 100 % vectoriels et s'adaptent à toutes les tailles sans perte.
+</div>
+
+</body>
+</html>
