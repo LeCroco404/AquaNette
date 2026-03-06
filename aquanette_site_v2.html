@@ -611,7 +611,6 @@ footer {
 .footer-mentions { font-size: 12px; color: rgba(255,255,255,0.3); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
 .footer-mentions:hover { color: var(--turquoise); }
 
-/* ── MODALE MENTIONS LÉGALES ── */
 .modal-overlay {
   display: none;
   position: fixed; inset: 0; z-index: 999;
@@ -1033,7 +1032,11 @@ footer {
 <div class="modal-overlay" id="modal-ml" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">Mentions légales</div>
+      <div style="display:flex;gap:16px;">
+        <span class="footer-mentions" onclick="document.getElementById('modal-ml').classList.add('open')">Mentions légales</span>
+        <span class="footer-mentions" onclick="document.getElementById('modal-pc').classList.add('open')">Politique de confidentialité</span>
+        <span class="footer-mentions" onclick="document.getElementById('modal-cgv').classList.add('open')">CGV</span>
+      </div>
       <button class="modal-close" onclick="document.getElementById('modal-ml').classList.remove('open')">✕</button>
     </div>
     <div class="modal-body">
@@ -1113,6 +1116,183 @@ footer {
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-pc" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Politique de confidentialité</div>
+      <button class="modal-close" onclick="document.getElementById('modal-pc').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="ml-notice">Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés n°78-17 du 6 janvier 1978 modifiée.</div>
+      <div style="height:20px;"></div>
+
+      <div class="ml-section">
+        <div class="ml-title">1. Responsable du traitement</div>
+        <div class="ml-text"><strong>Ethan Cohen</strong> — Aqua Nette, micro-entrepreneur<br>Seillons-Source-d'Argens, 83 (Var)<br>Contact : contactaquanette@gmail.com · 07 83 56 07 52</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">2. Données collectées</div>
+        <div class="ml-text">
+          Via le formulaire de contact, les données suivantes peuvent être collectées :<br><br>
+          — Prénom et nom<br>
+          — Numéro de téléphone<br>
+          — Adresse email<br>
+          — Village / commune<br>
+          — Volume de la piscine et fréquence souhaitée<br>
+          — Message libre (optionnel)<br><br>
+          <strong>Aucune donnée bancaire</strong> n'est collectée via ce site.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">3. Finalités du traitement</div>
+        <div class="ml-text">
+          Les données collectées sont utilisées exclusivement pour :<br><br>
+          — Répondre à vos demandes de devis et questions<br>
+          — Établir et gérer les contrats de prestation<br>
+          — Envoyer les comptes-rendus d'intervention<br>
+          — Facturation et suivi comptable<br><br>
+          <strong>Base légale :</strong> exécution d'un contrat (art. 6.1.b RGPD) et intérêt légitime (art. 6.1.f RGPD).
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">4. Durée de conservation</div>
+        <div class="ml-text">
+          — Données prospects (sans suite) : <strong>1 an</strong> à compter du dernier contact<br>
+          — Données clients actifs : <strong>durée de la relation commerciale + 3 ans</strong><br>
+          — Données de facturation : <strong>10 ans</strong> (obligation comptable légale)
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">5. Partage des données</div>
+        <div class="ml-text">Vos données ne sont <strong>jamais vendues ni transmises à des tiers</strong> à des fins commerciales. Elles peuvent être partagées uniquement avec des prestataires techniques strictement nécessaires (hébergeur du site), tenus par des obligations de confidentialité.</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">6. Vos droits</div>
+        <div class="ml-text">
+          Conformément au RGPD, vous disposez des droits suivants :<br><br>
+          — <strong>Droit d'accès</strong> : obtenir une copie de vos données<br>
+          — <strong>Droit de rectification</strong> : corriger des données inexactes<br>
+          — <strong>Droit à l'effacement</strong> : demander la suppression de vos données<br>
+          — <strong>Droit d'opposition</strong> : vous opposer au traitement<br>
+          — <strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible<br><br>
+          Pour exercer ces droits : <strong>contactaquanette@gmail.com</strong><br>
+          Réponse sous 30 jours. En cas de litige : <a href="https://www.cnil.fr" style="color:var(--azure);">www.cnil.fr</a>
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">7. Cookies & traceurs</div>
+        <div class="ml-text">Ce site <strong>n'utilise aucun cookie</strong> de traçage, publicitaire ou analytique. Aucune donnée de navigation n'est collectée ni transmise à des régies publicitaires ou outils d'analyse tiers.</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">8. Sécurité</div>
+        <div class="ml-text">Des mesures techniques et organisationnelles appropriées sont mises en œuvre pour protéger vos données contre tout accès non autorisé, perte ou divulgation (connexion HTTPS, accès restreint aux données).</div>
+      </div>
+
+      <div class="ml-section" style="margin-bottom:0;">
+        <div class="ml-title">9. Mise à jour</div>
+        <div class="ml-text">Cette politique peut être mise à jour à tout moment.<br><br><strong>Dernière mise à jour :</strong> Janvier 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-cgv" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Conditions Générales de Vente</div>
+      <button class="modal-close" onclick="document.getElementById('modal-cgv').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="ml-notice">Les présentes CGV s'appliquent à toutes les prestations de nettoyage de piscines réalisées par Ethan Cohen — Aqua Nette, micro-entrepreneur (SIRET : [à compléter]), pour tout client particulier ou professionnel.</div>
+      <div style="height:20px;"></div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 1 — Objet</div>
+        <div class="ml-text">Les présentes CGV définissent les conditions dans lesquelles Aqua Nette fournit des prestations d'entretien courant de piscines privées à ses clients. Toute commande implique l'acceptation sans réserve des présentes CGV.</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 2 — Prestations proposées</div>
+        <div class="ml-text">
+          Le Prestataire propose exclusivement :<br><br>
+          — Retrait des débris en surface (épuisette)<br>
+          — Aspiration manuelle du fond du bassin<br>
+          — Nettoyage et brossage de la ligne d'eau<br>
+          — Contrôle du pH et du chlore (lecture de valeurs)<br>
+          — Vérification visuelle du local technique (sans intervention mécanique)<br>
+          — Envoi d'un compte-rendu photo après chaque passage<br><br>
+          <strong>Exclusions :</strong> Aucune réparation, intervention sur équipements (pompes, filtres, vannes), traitement curatif, ni vente de produits chimiques. Les produits de traitement restent à la charge exclusive du Client.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 3 — Tarifs</div>
+        <div class="ml-text">
+          Tarifs exprimés en euros TTC (franchise de TVA — art. 293 B du CGI).<br><br>
+          — Prestation à l'acte : 45 € à 65 € selon volume<br>
+          — Forfait mensuel : à partir de 40 €/mois<br>
+          — Remise en route début de saison : 80 €<br><br>
+          Toute modification tarifaire est communiquée avec un préavis de 30 jours pour les forfaits en cours.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 4 — Devis et commande</div>
+        <div class="ml-text">Tout devis est valable 30 jours. La confirmation s'effectue par échange écrit (email ou SMS). Pour les forfaits, un échange écrit confirmant les termes fait office de contrat.</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 5 — Conditions d'intervention</div>
+        <div class="ml-text">
+          Le Client s'engage à :<br><br>
+          — Donner accès à la piscine à la date et heure convenues<br>
+          — Fournir les produits de traitement nécessaires<br>
+          — Signaler toute anomalie connue avant l'intervention<br><br>
+          En cas d'impossibilité d'accès non signalée 24h à l'avance, le déplacement pourra être facturé à hauteur de 15 €.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 6 — Paiement</div>
+        <div class="ml-text">
+          <strong>Délai :</strong> Paiement à réception de facture, sous 7 jours.<br>
+          <strong>Modes acceptés :</strong> Virement, espèces, chèque, PayPal, Lydia/Sumeria.<br>
+          <strong>Retard :</strong> Pénalités au taux légal en vigueur + indemnité forfaitaire de 40 € (art. L.441-10 C. com.). Forfaits impayés = suspension immédiate des prestations.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 7 — Résiliation des forfaits</div>
+        <div class="ml-text">Sans engagement : résiliation possible à tout moment avec préavis de 15 jours. Avec engagement : résiliation anticipée possible, avec facturation des prestations réalisées + indemnité équivalente à 1 mois de forfait.</div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 8 — Responsabilité</div>
+        <div class="ml-text">
+          Le Prestataire est couvert par une RC Pro. Sa responsabilité ne peut être engagée que pour des dommages directement causés par une faute prouvée lors de l'intervention. Sont exclus : dégradations préexistantes, pannes d'équipements, qualité de l'eau en l'absence de produits fournis par le Client, dommages météorologiques.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">Article 9 — Données personnelles</div>
+        <div class="ml-text">Les données du Client sont traitées conformément à la Politique de Confidentialité disponible sur ce site.</div>
+      </div>
+
+      <div class="ml-section" style="margin-bottom:0;">
+        <div class="ml-title">Article 10 — Droit applicable & litiges</div>
+        <div class="ml-text">Droit français applicable. En cas de litige, solution amiable recherchée en priorité. À défaut, tribunaux compétents du ressort de Draguignan (83). Pour les litiges consommation : recours gratuit au médiateur de la consommation compétent.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
@@ -1141,7 +1321,9 @@ document.querySelector('.form-submit').addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    document.getElementById('modal-ml').classList.remove('open');
+    ['modal-ml','modal-pc','modal-cgv'].forEach(id => {
+      document.getElementById(id).classList.remove('open');
+    });
   }
 });
 </script>
