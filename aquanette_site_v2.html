@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqua Nette — Nettoyage de piscines | Seillons-Source-d'Argens & Var</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bleu: #0A3D5F;
+  --azure: #1B7AA0;
+  --turquoise: #3BBFCF;
+  --aqua-clair: #C8EDF5;
+  --eau: #E8F7FB;
+  --blanc: #FAFCFD;
+  --sable: #F2EDE6;
+  --texte: #1A2B35;
+  --gris: #6B8090;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--blanc);
+  color: var(--texte);
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 60px;
+  background: rgba(250,252,253,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(10,61,95,0.08);
+  transition: all 0.3s ease;
+}
+
+.logo {
+  display: flex; align-items: baseline; gap: 6px;
+}
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--bleu);
+  letter-spacing: 0.02em;
+}
+.logo-wave {
+  color: var(--turquoise);
+  font-size: 20px;
+}
+.logo-tagline {
+  font-size: 11px;
+  color: var(--gris);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-left: 4px;
+  align-self: center;
+}
+
+nav ul { list-style: none; display: flex; gap: 36px; }
+nav ul a {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--gris);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--bleu); }
+
+.nav-cta {
+  background: var(--bleu);
+  color: var(--blanc) !important;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--azure) !important; transform: translateY(-1px); }
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--bleu);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 140px 70px 80px 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left::before {
+  content: '';
+  position: absolute; top: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(59,191,207,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--turquoise);
+  font-weight: 400;
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 300;
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--turquoise);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(200,237,245,0.8);
+  margin-bottom: 40px;
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: rgba(200,237,245,0.7);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
+}
+
+.hero-btns {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.btn-primary {
+  background: var(--turquoise);
+  color: var(--bleu);
+  padding: 15px 36px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover { background: #4DD4E6; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,191,207,0.35); }
+
+.btn-ghost {
+  border: 1px solid rgba(200,237,245,0.3);
+  color: var(--aqua-clair);
+  padding: 15px 36px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.btn-ghost:hover { border-color: rgba(200,237,245,0.7); background: rgba(200,237,245,0.07); }
+
+.hero-badges {
+  display: flex; gap: 24px; margin-top: 60px;
+  opacity: 0; animation: fadeUp 0.8s 0.95s forwards;
+}
+.badge {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(200,237,245,0.6);
+  letter-spacing: 0.03em;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--turquoise); flex-shrink: 0; }
+
+.hero-right {
+  background: var(--eau);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 100px 40px;
+}
+
+.pool-visual {
+  position: relative;
+  width: 100%; max-width: 460px;
+  opacity: 0; animation: fadeIn 1.2s 0.6s forwards;
+}
+
+.pool-container {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(10,61,95,0.2);
+}
+
+.pool-bg {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #2BA5CC 0%, #1B7AA0 40%, #0F5A7A 100%);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: ripple 4s linear infinite;
+}
+.ripple:nth-child(1) { width: 80px; height: 80px; top: 30%; left: 25%; animation-delay: 0s; }
+.ripple:nth-child(2) { width: 120px; height: 120px; top: 50%; left: 55%; animation-delay: 1.5s; }
+.ripple:nth-child(3) { width: 60px; height: 60px; top: 65%; left: 35%; animation-delay: 3s; }
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.water-shimmer {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0px,
+    rgba(255,255,255,0.04) 2px,
+    rgba(255,255,255,0) 4px
+  );
+  animation: shimmer 8s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 0; }
+}
+
+.pool-icon {
+  font-size: 80px;
+  opacity: 0.15;
+  filter: blur(0px);
+}
+
+.pool-overlay {
+  position: absolute; bottom: 24px; left: 24px; right: 24px;
+  background: rgba(10,61,95,0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.pool-overlay-label { font-size: 12px; color: var(--aqua-clair); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+.pool-overlay-value { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--blanc); }
+.pool-overlay-divider { width: 1px; height: 36px; background: rgba(200,237,245,0.2); }
+.pool-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #5DD67A; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #5DD67A; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.float-card {
+  position: absolute;
+  background: white;
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 40px rgba(10,61,95,0.15);
+  animation: float 5s ease-in-out infinite;
+}
+.float-card:nth-child(2) { animation-delay: 2s; top: 15%; right: -10%; }
+.float-card:nth-child(3) { animation-delay: 1s; bottom: 20%; right: -8%; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.card-icon { font-size: 22px; margin-bottom: 4px; }
+.card-label { font-size: 11px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.08em; }
+.card-value { font-size: 14px; font-weight: 500; color: var(--bleu); margin-top: 2px; }
+
+.section { padding: 100px 60px; }
+.section-center { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--turquoise);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 300;
+  color: var(--bleu);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--gris);
+  line-height: 1.7;
+  max-width: 560px;
+  font-weight: 300;
+  margin-bottom: 64px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.service-card {
+  background: var(--blanc);
+  border: 1px solid rgba(10,61,95,0.08);
+  border-radius: 20px;
+  padding: 36px 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--turquoise), var(--azure));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(10,61,95,0.1); border-color: rgba(27,122,160,0.2); }
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+.service-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--bleu);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+.service-desc {
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.not-included {
+  background: var(--eau);
+  border-radius: 20px;
+  padding: 32px 40px;
+  border: 1px solid rgba(59,191,207,0.2);
+  display: flex; align-items: flex-start; gap: 24px;
+}
+.not-included-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.not-included-title { font-size: 14px; font-weight: 500; color: var(--bleu); margin-bottom: 6px; }
+.not-included-desc { font-size: 13px; color: var(--gris); line-height: 1.6; font-weight: 300; }
+
+.tarifs-bg { background: var(--bleu); }
+
+.tarifs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tarif-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,237,245,0.15);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: all 0.3s;
+  position: relative;
+}
+.tarif-card.featured {
+  background: rgba(59,191,207,0.12);
+  border-color: var(--turquoise);
+}
+.tarif-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+
+.tarif-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--turquoise);
+  color: var(--bleu);
+  font-size: 11px; font-weight: 500;
+  padding: 4px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.tarif-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--blanc);
+  margin-bottom: 6px;
+}
+.tarif-freq {
+  font-size: 12px;
+  color: rgba(200,237,245,0.5);
+  letter-spacing: 0.06em;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.tarif-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--blanc);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.tarif-price span {
+  font-size: 20px;
+  color: rgba(200,237,245,0.6);
+  margin-left: 4px;
+}
+.tarif-per { font-size: 12px; color: rgba(200,237,245,0.45); margin-bottom: 28px; }
+.tarif-list { list-style: none; }
+.tarif-list li {
+  font-size: 13px; color: rgba(200,237,245,0.7);
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(200,237,245,0.07);
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 300;
+}
+.tarif-list li::before { content: '—'; color: var(--turquoise); font-size: 12px; flex-shrink: 0; }
+
+.tarif-cta {
+  display: block;
+  margin-top: 28px;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  color: var(--blanc);
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.tarif-cta:hover, .tarif-card.featured .tarif-cta { background: var(--turquoise); color: var(--bleu); font-weight: 500; }
+
+.zone-section { background: var(--sable); }
+.zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.villages-list {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 32px;
+}
+.village-tag {
+  background: var(--blanc);
+  border: 1px solid rgba(10,61,95,0.12);
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 13px;
+  color: var(--bleu);
+  font-weight: 400;
+  transition: all 0.2s;
+}
+.village-tag:hover { background: var(--bleu); color: var(--blanc); border-color: var(--bleu); }
+.village-tag.main { background: var(--bleu); color: var(--blanc); border-color: var(--bleu); }
+
+.map-visual {
+  background: linear-gradient(135deg, var(--eau) 0%, rgba(59,191,207,0.1) 100%);
+  border-radius: 24px;
+  height: 380px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  border: 1px solid rgba(59,191,207,0.2);
+  overflow: hidden;
+}
+
+.map-dot {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--azure);
+}
+.map-dot.center { width: 16px; height: 16px; background: var(--turquoise); box-shadow: 0 0 0 4px rgba(59,191,207,0.2); }
+.map-dot::after {
+  content: attr(data-name);
+  position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+  white-space: nowrap; font-size: 10px; color: var(--bleu); font-weight: 500;
+  background: white; padding: 2px 8px; border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.map-radius {
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  border: 1px dashed rgba(27,122,160,0.3);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+.contact-info { padding-top: 10px; }
+
+.contact-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 32px;
+}
+.contact-icon-box {
+  width: 46px; height: 46px;
+  background: var(--eau);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.contact-label { font-size: 11px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.contact-value { font-size: 16px; color: var(--bleu); font-weight: 400; }
+
+.contact-form {
+  background: var(--eau);
+  border-radius: 24px;
+  padding: 40px;
+}
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--bleu);
+  margin-bottom: 28px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 12px; color: var(--gris); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block; font-weight: 400; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: var(--blanc);
+  border: 1px solid rgba(10,61,95,0.1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--texte);
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 3px rgba(59,191,207,0.12);
+}
+.form-textarea { resize: none; height: 90px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--bleu);
+  color: var(--blanc);
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: 8px;
+  letter-spacing: 0.03em;
+}
+.form-submit:hover { background: var(--azure); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,61,95,0.25); }
+
+footer {
+  background: var(--texte);
+  padding: 50px 60px;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--blanc); font-weight: 400; }
+.footer-logo span { color: var(--turquoise); }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--turquoise); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-mentions { font-size: 12px; color: rgba(255,255,255,0.3); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+.footer-mentions:hover { color: var(--turquoise); }
+
+/* ── MODALE MENTIONS LÉGALES ── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(10,61,95,0.7);
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--blanc);
+  border-radius: 20px;
+  max-width: 720px; width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 80px rgba(10,61,95,0.3);
+  position: relative;
+}
+.modal-header {
+  position: sticky; top: 0;
+  background: var(--bleu);
+  padding: 24px 32px;
+  border-radius: 20px 20px 0 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: white; }
+.modal-close {
+  background: rgba(255,255,255,0.1); border: none; color: white;
+  width: 36px; height: 36px; border-radius: 50%; font-size: 18px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+.modal-body { padding: 32px; }
+.ml-section { margin-bottom: 28px; }
+.ml-title {
+  font-size: 13px; font-weight: 600; color: var(--bleu);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(10,61,95,0.1);
+}
+.ml-text { font-size: 13.5px; color: #3a4a55; line-height: 1.75; font-weight: 300; }
+.ml-text strong { font-weight: 500; color: var(--bleu); }
+.ml-notice {
+  background: var(--eau);
+  border-left: 3px solid var(--turquoise);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  font-size: 12.5px; color: var(--bleu); line-height: 1.6;
+  margin-top: 8px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  nav ul { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 120px 32px 60px; }
+  .hero-right { min-height: 400px; padding: 60px 24px; }
+  .section { padding: 70px 24px; }
+  .services-grid, .tarifs-grid, .zone-grid, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+  .float-card { display: none; }
+}
+
+.wave-divider {
+  width: 100%; overflow: hidden; line-height: 0;
+  background: var(--bleu);
+}
+.wave-divider svg { display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <span class="logo-text">Aqua Nette</span>
+    <span class="logo-wave">〜</span>
+    <span class="logo-tagline">L'essentiel, bien fait.</span>
+  </div>
+  <ul>
+    <li><a href="#services">Prestations</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#zone">Zone</a></li>
+    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Var · Seillons-Source-d'Argens</p>
+    <h1 class="hero-title">Votre piscine,<br><em>toujours propre.</em></h1>
+    <p class="hero-subtitle">Sans vous en occuper.</p>
+    <p class="hero-desc">Entretien régulier, aspiration, ligne d'eau, contrôle pH. Des passages simples et soignés pour que vous profitiez — et rien de plus.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Demander un devis</a>
+      <a href="#tarifs" class="btn-ghost">Voir les forfaits</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><div class="badge-dot"></div> Seillons · St-Maximin · Rians</div>
+      <div class="badge"><div class="badge-dot"></div> Micro-entreprise locale</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="pool-visual">
+      <div class="pool-container">
+        <div class="pool-bg">
+          <div class="ripple"></div>
+          <div class="ripple"></div>
+          <div class="ripple"></div>
+          <div class="water-shimmer"></div>
+          <div class="pool-icon">🏊</div>
+          <div class="pool-overlay">
+            <div>
+              <div class="pool-overlay-label">pH actuel</div>
+              <div class="pool-overlay-value">7,2</div>
+            </div>
+            <div class="pool-overlay-divider"></div>
+            <div>
+              <div class="pool-overlay-label">Chlore</div>
+              <div class="pool-overlay-value">1,4</div>
+            </div>
+            <div class="pool-overlay-divider"></div>
+            <div class="pool-status">
+              <div class="status-dot"></div>
+              Optimal
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card" style="top:12%; right:-12%; animation-delay:0s;">
+        <div class="card-icon">🍃</div>
+        <div class="card-label">Surface</div>
+        <div class="card-value">Nettoyée</div>
+      </div>
+
+      <div class="float-card" style="bottom:22%; right:-14%; animation-delay:1.8s;">
+        <div class="card-icon">✓</div>
+        <div class="card-label">Fond</div>
+        <div class="card-value">Aspiré</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="section-center">
+    <p class="section-label reveal">Ce qu'on fait</p>
+    <h2 class="section-title reveal">Des gestes précis,<br>pas de superflu.</h2>
+    <p class="section-lead reveal">Cinq prestations essentielles pour maintenir votre piscine propre et saine, semaine après semaine. Ni plus, ni moins.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">🍂</span>
+        <div class="service-title">Retrait en surface</div>
+        <p class="service-desc">Épuisette sur toute la surface — feuilles, insectes, débris. Votre bassin retrouve sa clarté immédiatement.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <span class="service-icon">🔄</span>
+        <div class="service-title">Aspiration du fond</div>
+        <p class="service-desc">Passage manuel du balai au fond du bassin pour éliminer les dépôts de terre, matières organiques, sable et sable du Sahara.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <span class="service-icon">〰️</span>
+        <div class="service-title">Ligne d'eau</div>
+        <p class="service-desc">Brossage soigneux de la ligne de flottaison pour éliminer les dépôts calcaires et les auréoles.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <span class="service-icon">🧪</span>
+        <div class="service-title">Contrôle pH & chlore</div>
+        <p class="service-desc">Lecture des valeurs essentielles avec testeur numérique. Compte-rendu transmis après chaque passage.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <span class="service-icon">👁️</span>
+        <div class="service-title">Vérification technique</div>
+        <p class="service-desc">Contrôle visuel du local pompe et filtration. Alerte immédiate en cas d'anomalie visible.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.3s" style="background: var(--eau); border-color: rgba(59,191,207,0.25);">
+        <span class="service-icon">📱</span>
+        <div class="service-title">Compte-rendu photo</div>
+        <p class="service-desc">Après chaque passage, vous recevez un SMS ou email avec photo et les valeurs relevées. Idéal résidences secondaires.</p>
+      </div>
+    </div>
+
+    <div class="not-included reveal">
+      <div class="not-included-icon">💡</div>
+      <div>
+        <div class="not-included-title">Ce qui reste à votre charge (et c'est voulu)</div>
+        <div class="not-included-desc">Les produits de traitement (chlore, pH+, pH−, floculant) sont fournis par vous — vous gardez le contrôle total de votre eau. Aqua Nette n'intervient pas sur la plomberie, les pompes, ni les traitements curatifs. Pour les gros problèmes techniques, nous vous orientons vers le bon artisan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:var(--blanc);">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#0A3D5F"/>
+  </svg>
+</div>
+
+<section class="section tarifs-bg" id="tarifs">
+  <div class="section-center">
+    <p class="section-label reveal" style="color:var(--turquoise)">Forfaits</p>
+    <h2 class="section-title reveal" style="color:var(--blanc)">Des tarifs simples,<br>sans surprises.</h2>
+    <p class="section-lead reveal" style="color:rgba(200,237,245,0.65)">Choisissez la fréquence qui vous convient. Engagement flexible.</p>
+
+    <div class="tarifs-grid">
+      <div class="tarif-card reveal">
+        <div class="tarif-name">Essentiel</div>
+        <div class="tarif-freq">1 passage / mois</div>
+        <div class="tarif-price">40<span>€</span></div>
+        <div class="tarif-per">par passage</div>
+        <ul class="tarif-list">
+          <li>Surface + fond + ligne d'eau</li>
+          <li>Contrôle pH et chlore</li>
+          <li>Compte-rendu par SMS</li>
+          <li>Sans engagement</li>
+        </ul>
+        <a href="#contact" class="tarif-cta">Commencer</a>
+      </div>
+
+      <div class="tarif-card featured reveal" style="transition-delay:0.1s">
+        <div class="tarif-badge">Le + choisi</div>
+        <div class="tarif-name">Régulier</div>
+        <div class="tarif-freq">2 passages / mois</div>
+        <div class="tarif-price">75<span>€/mois</span></div>
+        <div class="tarif-per">soit 37,50 € le passage</div>
+        <ul class="tarif-list">
+          <li>Toutes les prestations incluses</li>
+          <li>Compte-rendu photo à chaque visite</li>
+          <li>Alerte technique incluse</li>
+          <li>Engagement 3 mois</li>
+        </ul>
+        <a href="#contact" class="tarif-cta">Choisir ce forfait</a>
+      </div>
+
+      <div class="tarif-card reveal" style="transition-delay:0.2s">
+        <div class="tarif-name">Confort</div>
+        <div class="tarif-freq">1 passage / semaine</div>
+        <div class="tarif-price">140<span>€/mois</span></div>
+        <div class="tarif-per">soit 35 € le passage</div>
+        <ul class="tarif-list">
+          <li>Tout inclus, haute fréquence</li>
+          <li>Idéal résidences secondaires</li>
+          <li>Rapport hebdo par email</li>
+          <li>Contrat saison</li>
+        </ul>
+        <a href="#contact" class="tarif-cta">Nous contacter</a>
+      </div>
+    </div>
+
+    <p class="reveal" style="text-align:center; color:rgba(200,237,245,0.4); font-size:13px; margin-top:32px;">Tarif ponctuel : 45 € (piscine ≤ 40m³) · 55 € (40–70m³) · 65 € (> 70m³)</p>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:var(--sable);">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#0A3D5F"/>
+  </svg>
+</div>
+
+<section class="section zone-section" id="zone">
+  <div class="section-center">
+    <div class="zone-grid">
+      <div>
+        <p class="section-label reveal">Zone d'intervention</p>
+        <h2 class="section-title reveal">Le Var, <em style="font-style:italic">de village en village.</em></h2>
+        <p class="section-lead reveal" style="margin-bottom:24px;">Aqua Nette intervient dans un rayon de 25 km autour de Seillons-Source-d'Argens. Pas de déplacements trop longs pour maintenir un prix accessible.</p>
+        <div class="villages-list reveal">
+          <span class="village-tag main">Seillons-Source-d'Argens</span>
+          <span class="village-tag">Saint-Maximin</span>
+          <span class="village-tag">Pourrières</span>
+          <span class="village-tag">Pourcieux</span>
+          <span class="village-tag">Rians</span>
+          <span class="village-tag">Bras</span>
+          <span class="village-tag">Ollières</span>
+          <span class="village-tag">Tavernes</span>
+          <span class="village-tag">Varages</span>
+          <span class="village-tag">Barjols</span>
+        </div>
+        <p class="reveal" style="font-size:13px; color:var(--gris); margin-top:20px; font-weight:300;">Votre village n'est pas listé ? Contactez-nous, nous étudions chaque demande.</p>
+      </div>
+      <div>
+        <div class="map-visual reveal">
+          <div class="map-radius"></div>
+          <div class="map-dot center" data-name="Seillons" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+          <div class="map-dot" data-name="St-Maximin" style="top:38%;left:34%"></div>
+          <div class="map-dot" data-name="Pourrières" style="top:42%;left:62%"></div>
+          <div class="map-dot" data-name="Rians" style="top:28%;left:55%"></div>
+          <div class="map-dot" data-name="Bras" style="top:62%;left:44%"></div>
+          <div class="map-dot" data-name="Ollières" style="top:65%;left:58%"></div>
+          <div class="map-dot" data-name="Barjols" style="top:34%;left:40%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-center">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label reveal">Contact</p>
+        <h2 class="section-title reveal">Parlons de<br>votre piscine.</h2>
+        <p class="section-lead reveal">Un devis gratuit, une réponse sous 24h. Pas de déplacement facturé pour l'estimation.</p>
+
+        <div class="contact-item reveal">
+          <div class="contact-icon-box">📞</div>
+          <div>
+            <div class="contact-label">Téléphone</div>
+            <div class="contact-value">07 83 56 07 52</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon-box">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c1f1312081d1f081d0d091d12190808193c1b111d1510521f1311">[email&#160;protected]</a></div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon-box">📍</div>
+          <div>
+            <div class="contact-label">Basé à</div>
+            <div class="contact-value">Seillons-Source-d'Argens, 83</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon-box">🕐</div>
+          <div>
+            <div class="contact-label">Disponibilité</div>
+            <div class="contact-value">Lun – Sam · 8h00 – 19h00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-form">
+          <div class="form-title">Demande de devis</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Prénom</label>
+              <input type="text" class="form-input" placeholder="Jean">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nom</label>
+              <input type="text" class="form-input" placeholder="Dupont">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Village</label>
+              <input type="text" class="form-input" placeholder="Rians...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Volume piscine</label>
+              <select class="form-select">
+                <option>— Estimation —</option>
+                <option>Moins de 40 m³</option>
+                <option>40 à 70 m³</option>
+                <option>Plus de 70 m³</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fréquence souhaitée</label>
+            <select class="form-select">
+              <option>— Choisir —</option>
+              <option>1 passage / mois</option>
+              <option>2 passages / mois</option>
+              <option>Chaque semaine</option>
+              <option>Ponctuel (à la demande)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message (optionnel)</label>
+            <textarea class="form-textarea" placeholder="Résidence secondaire, type de piscine, remarques..."></textarea>
+          </div>
+          <button class="form-submit">Envoyer ma demande →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Aqua <span>Nette</span> 〜</div>
+    <div class="footer-links">
+      <a href="#services">Prestations</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#zone">Zone</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+      <div class="footer-copy">© 2026 Aqua Nette · Ethan Cohen · Micro-entreprise</div>
+      <span class="footer-mentions" onclick="document.getElementById('modal-ml').classList.add('open')">Mentions légales</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-ml" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Mentions légales</div>
+      <button class="modal-close" onclick="document.getElementById('modal-ml').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="ml-notice">
+        Conformément à l'article 6 de la loi n°2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN), les informations suivantes sont portées à la connaissance des utilisateurs et visiteurs du site aquanette.fr.
+      </div>
+
+      <div style="height:24px;"></div>
+
+      <div class="ml-section">
+        <div class="ml-title">1. Éditeur du site</div>
+        <div class="ml-text">
+          <strong>Nom :</strong> Ethan Cohen<br>
+          <strong>Statut :</strong> Micro-entrepreneur (entreprise individuelle)<br>
+          <strong>Activité :</strong> Nettoyage de piscines — Code APE 8129B<br>
+          <strong>Adresse :</strong> Seillons-Source-d'Argens, 83 (Var), France<br>
+          <strong>Téléphone :</strong> 07 83 56 07 52<br>
+          <strong>Email :</strong> contactaquanette@gmail.com<br>
+          <strong>SIRET :</strong> [À compléter après immatriculation]<br>
+          <strong>Numéro URSSAF :</strong> [À compléter]<br>
+          <strong>Pas de TVA intracommunautaire</strong> (franchise en base de TVA — art. 293 B du CGI)
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">2. Hébergeur du site</div>
+        <div class="ml-text">
+          <strong>Hébergeur :</strong> [À compléter — ex : OVH SAS / Infomaniak / o2switch]<br>
+          <strong>Adresse :</strong> [Adresse de l'hébergeur]<br>
+          <strong>Site :</strong> [URL de l'hébergeur]<br><br>
+          <em>Note : Renseigner le nom et les coordonnées de votre hébergeur web (OVH, o2switch, Infomaniak…) dès la mise en ligne.</em>
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">3. Propriété intellectuelle</div>
+        <div class="ml-text">
+          L'ensemble des éléments constituant ce site (textes, visuels, logo, structure) est la propriété exclusive d'Ethan Cohen — Aqua Nette. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">4. Données personnelles & RGPD</div>
+        <div class="ml-text">
+          Les informations collectées via le formulaire de contact (nom, téléphone, email) sont utilisées exclusivement pour répondre à vos demandes de devis. Elles ne sont ni revendues, ni transmises à des tiers.<br><br>
+          Conformément au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit : <strong>contactaquanette@gmail.com</strong><br><br>
+          <strong>Durée de conservation :</strong> les données de contact sont conservées 3 ans maximum à compter du dernier échange.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">5. Cookies</div>
+        <div class="ml-text">
+          Ce site n'utilise pas de cookies de traçage ou publicitaires. Aucune donnée de navigation n'est collectée à des fins analytiques ou commerciales.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">6. Responsabilité</div>
+        <div class="ml-text">
+          Aqua Nette s'efforce de maintenir les informations de ce site à jour et exactes. Toutefois, la responsabilité de l'éditeur ne saurait être engagée en cas d'inexactitude ou d'omission. Les liens hypertextes pointant vers des sites tiers sont fournis à titre informatif ; Aqua Nette n'en contrôle pas le contenu.
+        </div>
+      </div>
+
+      <div class="ml-section">
+        <div class="ml-title">7. Droit applicable</div>
+        <div class="ml-text">
+          Le présent site est soumis au droit français. Tout litige relatif à son utilisation relève de la compétence exclusive des tribunaux français.
+        </div>
+      </div>
+
+      <div class="ml-notice" style="margin-top:0;">
+        ⚠️ <strong>À faire avant la mise en ligne :</strong> compléter le numéro SIRET (obtenu après immatriculation à l'URSSAF) et le nom de votre hébergeur web dans les sections 1 et 2 ci-dessus.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 80);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow =
+    window.scrollY > 50 ? '0 4px 30px rgba(10,61,95,0.1)' : 'none';
+});
+
+document.querySelector('.form-submit').addEventListener('click', () => {
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = '✓ Message envoyé !';
+  btn.style.background = '#27AE60';
+  setTimeout(() => {
+    btn.textContent = 'Envoyer ma demande →';
+    btn.style.background = '';
+  }, 3000);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('modal-ml').classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
