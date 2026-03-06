@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqua Nette — Process Client & Messages Type</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bleu:#0A3D5F; --azure:#1B7AA0; --turquoise:#3BBFCF;
+  --eau:#E8F7FB; --blanc:#FAFCFD; --sable:#F2EDE6;
+  --texte:#1A2B35; --gris:#6B8090;
+  --vert:#27AE60; --orange:#E67E22; --rouge:#E74C3C; --violet:#8E44AD;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#F0F0EE;color:var(--texte);padding:40px 24px;}
+.page{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:24px;}
+
+.page-header{background:var(--bleu);border-radius:20px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.header-logo{font-family:'Cormorant Garamond',serif;font-size:28px;color:white;font-weight:600;}
+.header-logo span{color:var(--turquoise);}
+.header-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:white;line-height:1.1;}
+.header-sub{font-size:13px;color:rgba(200,237,245,0.55);margin-top:6px;font-weight:300;}
+
+.card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.card-header{padding:20px 28px;display:flex;align-items:center;gap:14px;}
+.card-header-icon{font-size:24px;}
+.card-header-title{font-size:18px;font-weight:600;color:var(--bleu);}
+.card-header-sub{font-size:12px;color:var(--gris);margin-top:2px;}
+.card-body{padding:0 28px 28px;}
+
+.timeline{display:flex;flex-direction:column;gap:0;}
+.step{display:grid;grid-template-columns:60px 1fr;gap:0 20px;position:relative;}
+.step:not(:last-child) .step-line{position:absolute;left:29px;top:52px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--turquoise),rgba(59,191,207,0.1));z-index:0;}
+.step-left{display:flex;flex-direction:column;align-items:center;padding-top:4px;position:relative;z-index:1;}
+.step-num{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;}
+.step-right{padding:4px 0 28px;}
+.step-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;font-weight:500;}
+.step-title{font-size:16px;font-weight:600;color:var(--bleu);margin-bottom:8px;}
+.step-desc{font-size:13.5px;color:var(--gris);line-height:1.65;font-weight:300;margin-bottom:10px;}
+.step-actions{display:flex;flex-wrap:wrap;gap:8px;}
+.action-tag{display:flex;align-items:center;gap:5px;font-size:11.5px;padding:5px 12px;border-radius:100px;font-weight:400;}
+
+.delay-badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;margin-left:8px;vertical-align:middle;}
+
+.msg-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:0 28px;margin-bottom:20px;}
+.msg-tab{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid transparent;transition:all 0.2s;}
+.msg-tab.active{background:var(--bleu);color:white;border-color:var(--bleu);}
+.msg-tab:not(.active){background:white;color:var(--bleu);border-color:rgba(10,61,95,0.15);}
+.msg-tab:not(.active):hover{border-color:var(--turquoise);color:var(--azure);}
+
+.msg-grid{display:flex;flex-direction:column;gap:16px;padding:0 28px 28px;}
+.msg-card{border:1.5px solid rgba(10,61,95,0.08);border-radius:14px;overflow:hidden;}
+.msg-card-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(10,61,95,0.06);}
+.msg-card-left{display:flex;align-items:center;gap:10px;}
+.msg-situation{font-size:13px;font-weight:600;color:var(--bleu);}
+.msg-channel{font-size:10px;padding:3px 10px;border-radius:100px;font-weight:500;}
+.msg-copy-btn{background:var(--eau);border:none;padding:6px 14px;border-radius:8px;font-size:11px;color:var(--azure);cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.2s;white-space:nowrap;}
+.msg-copy-btn:hover{background:var(--turquoise);color:var(--bleu);}
+.msg-body{padding:16px 18px;}
+.msg-text{font-size:13px;line-height:1.75;color:var(--texte);white-space:pre-line;font-weight:300;}
+.msg-variables{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.msg-var{font-size:10.5px;background:#FFF3CD;color:#7A5C00;padding:3px 10px;border-radius:6px;font-weight:400;}
+
+.tip-box{background:var(--eau);border-left:3px solid var(--turquoise);border-radius:0 10px 10px 0;padding:12px 16px;font-size:12.5px;color:var(--bleu);line-height:1.6;margin-top:14px;}
+
+.c-vert{color:var(--vert);} .c-orange{color:var(--orange);} .c-rouge{color:var(--rouge);} .c-violet{color:var(--violet);} .c-azure{color:var(--azure);}
+.bg-vert{background:rgba(39,174,96,0.1);color:var(--vert);}
+.bg-orange{background:rgba(230,126,34,0.1);color:var(--orange);}
+.bg-azure{background:rgba(27,122,160,0.1);color:var(--azure);}
+.bg-violet{background:rgba(142,68,173,0.1);color:var(--violet);}
+.bg-rouge{background:rgba(231,76,60,0.1);color:var(--rouge);}
+.bg-bleu{background:rgba(10,61,95,0.08);color:var(--bleu);}
+
+.num-vert{background:rgba(39,174,96,0.12);color:var(--vert);}
+.num-azure{background:rgba(27,122,160,0.12);color:var(--azure);}
+.num-orange{background:rgba(230,126,34,0.12);color:var(--orange);}
+.num-violet{background:rgba(142,68,173,0.12);color:var(--violet);}
+.num-rouge{background:rgba(231,76,60,0.12);color:var(--rouge);}
+.num-bleu{background:rgba(59,191,207,0.15);color:var(--bleu);}
+
+.msg-panel{display:none;}
+.msg-panel.active{display:flex;flex-direction:column;gap:16px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div class="header-logo">Aqua <span>Nette 〜</span></div>
+    <div style="font-size:11px;color:rgba(200,237,245,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Kit opérationnel</div>
+  </div>
+  <div>
+    <div class="header-title">Process client<br>& Messages type</div>
+    <div class="header-sub">De la première demande à la fidélisation — Ethan Cohen</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,var(--bleu),var(--azure));border-radius:16px 16px 0 0;">
+    <div class="card-header-icon">🔄</div>
+    <div>
+      <div class="card-header-title" style="color:white;">Process client complet</div>
+      <div class="card-header-sub" style="color:rgba(200,237,245,0.6);">7 étapes de la prospection à la fidélisation</div>
+    </div>
+  </div>
+  <div class="card-body" style="padding-top:28px;">
+    <div class="timeline">
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-vert">1</div></div>
+        <div class="step-right">
+          <div class="step-label c-vert">Acquisition</div>
+          <div class="step-title">Premier contact entrant <span class="delay-badge bg-vert">Répondre sous 2h max</span></div>
+          <div class="step-desc">Le client vous contacte via le formulaire du site, un flyer, les réseaux ou le bouche-à-oreille. Première impression décisive : réactivité = confiance.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-vert">✓ Répondre par SMS ou appel dans les 2h</span>
+            <span class="action-tag bg-azure">📋 Noter : nom, village, taille piscine, fréquence souhaitée</span>
+            <span class="action-tag bg-bleu">💬 Envoyer le Message type #1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-azure">2</div></div>
+        <div class="step-right">
+          <div class="step-label c-azure">Qualification</div>
+          <div class="step-title">Devis & qualification <span class="delay-badge bg-azure">J+1 maximum</span></div>
+          <div class="step-desc">Poser les 4 questions essentielles pour établir le bon tarif et la bonne fréquence. Pas besoin de se déplacer pour un devis — tout se fait par téléphone ou WhatsApp.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-azure">❓ Volume piscine (m³ ou dimensions)</span>
+            <span class="action-tag bg-azure">❓ Fréquence souhaitée</span>
+            <span class="action-tag bg-azure">❓ Résidence principale ou secondaire ?</span>
+            <span class="action-tag bg-azure">❓ Accès facile à la propriété ?</span>
+            <span class="action-tag bg-bleu">📩 Envoyer le Message type #2 (devis)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-orange">3</div></div>
+        <div class="step-right">
+          <div class="step-label c-orange">Confirmation</div>
+          <div class="step-title">Accord & planification <span class="delay-badge bg-orange">Sous 48h</span></div>
+          <div class="step-desc">Le client accepte le devis. Fixer la date du premier passage, expliquer le déroulement, confirmer par écrit. C'est aussi le moment de proposer le forfait mensuel si le client hésitait.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-orange">📅 Fixer date et créneau horaire</span>
+            <span class="action-tag bg-orange">🔑 Confirmer les modalités d'accès</span>
+            <span class="action-tag bg-bleu">💬 Envoyer le Message type #3 (confirmation)</span>
+            <span class="action-tag bg-vert">📋 Ajouter le client dans le tableau de suivi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-bleu">4</div></div>
+        <div class="step-right">
+          <div class="step-label" style="color:var(--turquoise);">Intervention</div>
+          <div class="step-title">Réalisation de la prestation <span class="delay-badge" style="background:rgba(59,191,207,0.15);color:var(--bleu);">Le jour J</span></div>
+          <div class="step-desc">Arriver à l'heure, équipement complet. Réaliser chaque geste dans l'ordre. Prendre 2-3 photos avant/après. Relever les valeurs pH et chlore.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-bleu">🍂 Surface → fond → ligne d'eau → pH</span>
+            <span class="action-tag bg-bleu">📸 2-3 photos (avant + après + eau claire)</span>
+            <span class="action-tag bg-bleu">🧪 Noter pH + chlore relevés</span>
+            <span class="action-tag bg-bleu">👁️ Check visuel local technique</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-vert">5</div></div>
+        <div class="step-right">
+          <div class="step-label c-vert">Compte-rendu</div>
+          <div class="step-title">Rapport post-intervention <span class="delay-badge bg-vert">Dans l'heure</span></div>
+          <div class="step-desc">Envoyer systématiquement le compte-rendu photo par SMS ou WhatsApp juste après le passage. C'est LE différenciateur Aqua Nette — les clients adorent et en parlent autour d'eux.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-vert">📱 SMS avec 1-2 photos + valeurs pH/Cl</span>
+            <span class="action-tag bg-vert">⚠️ Signaler toute anomalie détectée</span>
+            <span class="action-tag bg-bleu">💬 Envoyer le Message type #4 (compte-rendu)</span>
+            <span class="action-tag bg-vert">📋 Mettre à jour le tableau de suivi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-left"><div class="step-num num-violet">6</div></div>
+        <div class="step-right">
+          <div class="step-label c-violet">Facturation</div>
+          <div class="step-title">Facture & paiement <span class="delay-badge bg-violet">Sous 24-48h</span></div>
+          <div class="step-desc">Envoyer la facture rapidement. Pour les forfaits mensuels, facturer en fin de mois ou en début du mois suivant. Toujours par email, avec le numéro de facture séquentiel.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-violet">📄 Facture sur Indy / Shine / AE manager</span>
+            <span class="action-tag bg-violet">💶 Modes acceptés : virement, espèces, Lydia</span>
+            <span class="action-tag bg-bleu">💬 Envoyer le Message type #5 (facture)</span>
+            <span class="action-tag bg-violet">📋 Enregistrer le paiement dans le tableau</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left"><div class="step-num num-rouge">7</div></div>
+        <div class="step-right">
+          <div class="step-label c-rouge">Fidélisation</div>
+          <div class="step-title">Rétention & bouche-à-oreille <span class="delay-badge bg-rouge">En continu</span></div>
+          <div class="step-desc">Un client fidèle vaut 5 nouveaux prospects. Relancer avant chaque saison, proposer un parrainage, envoyer un message de fin de saison. Soigner la relation humaine.</div>
+          <div class="step-actions">
+            <span class="action-tag bg-rouge">🌸 Rappel remise en route (mars-avril)</span>
+            <span class="action-tag bg-rouge">❄️ Rappel hivernage (octobre)</span>
+            <span class="action-tag bg-rouge">🎁 Programme parrainage (−5 € par filleul)</span>
+            <span class="action-tag bg-bleu">💬 Messages type #6, #7, #8</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">💡 <strong>Règle d'or :</strong> Chaque SMS envoyé après une intervention coûte 30 secondes mais génère une fidélisation à long terme. Ne jamais sauter l'étape du compte-rendu photo, même pour un passage rapide.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" style="padding-bottom:0;">
+    <div class="card-header-icon">💬</div>
+    <div>
+      <div class="card-header-title">Messages type</div>
+      <div class="card-header-sub">Prêts à copier-coller — personnalise les zones [entre crochets]</div>
+    </div>
+  </div>
+
+  <div class="msg-tabs" style="padding-top:20px;">
+    <button class="msg-tab active" onclick="showTab('acquisition')">🟢 Acquisition</button>
+    <button class="msg-tab" onclick="showTab('intervention')">🔵 Intervention</button>
+    <button class="msg-tab" onclick="showTab('facturation')">🟣 Facturation</button>
+    <button class="msg-tab" onclick="showTab('fidelisation')">🔴 Fidélisation</button>
+    <button class="msg-tab" onclick="showTab('situations')">⚠️ Situations spéciales</button>
+  </div>
+
+  <div class="msg-panel active" id="tab-acquisition">
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left">
+            <span style="font-size:18px;">1️⃣</span>
+            <div>
+              <div class="msg-situation">Réponse premier contact</div>
+              <div style="font-size:11px;color:var(--gris);">Dès réception d'une demande</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span class="msg-channel bg-vert">SMS / WhatsApp</span>
+            <button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button>
+          </div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg1">Bonjour [Prénom],
+
+Merci pour votre message ! Je suis Ethan, gérant d'Aqua Nette — entretien de piscines dans le Var.
+
+Je serais ravi de vous aider pour l'entretien de votre piscine. Pourriez-vous me préciser :
+• Le volume approximatif (ou les dimensions) de votre bassin ?
+• La fréquence souhaitée (hebdomadaire, bi-mensuelle, ponctuelle) ?
+• Votre commune ?
+
+Je vous envoie un devis dans la journée. 😊
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left">
+            <span style="font-size:18px;">2️⃣</span>
+            <div>
+              <div class="msg-situation">Envoi du devis</div>
+              <div style="font-size:11px;color:var(--gris);">Après qualification téléphonique</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span class="msg-channel bg-azure">Email / SMS</span>
+            <button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button>
+          </div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg2">Bonjour [Prénom],
+
+Suite à notre échange, voici mon devis pour l'entretien de votre piscine :
+
+🏊 Piscine : [volume] m³ — [commune]
+📋 Prestation : [description ex: aspiration fond + surface + ligne d'eau + contrôle pH]
+📅 Fréquence : [ex: 2 passages/mois]
+💶 Tarif : [montant] €/mois (ou [montant] €/passage)
+
+Chaque intervention inclut un compte-rendu photo envoyé par SMS avec les valeurs pH et chlore relevées.
+
+Ce devis est valable 30 jours. Pour confirmer, un simple "OK" par retour de message suffit. 🙂
+
+À votre disposition pour toute question.
+
+Ethan Cohen — Aqua Nette 〜
+07 83 56 07 52</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[volume]</span><span class="msg-var">[commune]</span><span class="msg-var">[description]</span><span class="msg-var">[fréquence]</span><span class="msg-var">[montant]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left">
+            <span style="font-size:18px;">3️⃣</span>
+            <div>
+              <div class="msg-situation">Confirmation du premier passage</div>
+              <div style="font-size:11px;color:var(--gris);">Après acceptation du devis</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span class="msg-channel bg-vert">SMS</span>
+            <button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button>
+          </div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg3">Bonjour [Prénom], parfait !
+
+Je confirme mon passage pour votre piscine :
+📅 [Jour] [date] vers [heure]
+
+Je sonnerai en arrivant. Si vous n'êtes pas présent(e), pas de souci — indiquez-moi juste comment accéder à la piscine.
+
+Je vous envoie un compte-rendu photo dès la fin du passage. À très vite !
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[Jour]</span><span class="msg-var">[date]</span><span class="msg-var">[heure]</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="msg-panel" id="tab-intervention">
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">4️⃣</span>
+            <div><div class="msg-situation">Compte-rendu standard (piscine OK)</div><div style="font-size:11px;color:var(--gris);">Juste après chaque passage</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-vert">SMS + Photo</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg4">Bonjour [Prénom] 👋
+
+Passage effectué cet après-midi — votre piscine est nickel ! ✅
+
+📊 Relevés du jour :
+• pH : [valeur] (idéal : 7,2 – 7,6)
+• Chlore : [valeur] mg/L (idéal : 1 – 3)
+• État général : ☀️ Excellent
+
+✔️ Surface nettoyée
+✔️ Fond aspiré
+✔️ Ligne d'eau brossée
+✔️ Local technique vérifié
+
+Bonne baignade ! 🏊
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[valeur pH]</span><span class="msg-var">[valeur chlore]</span></div>
+          <div class="tip-box">📸 Joindre 1-2 photos : vue d'ensemble de l'eau + fond si visible. Prendre la photo en contre-jour pour montrer la clarté de l'eau.</div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">5️⃣</span>
+            <div><div class="msg-situation">Compte-rendu avec anomalie pH</div><div style="font-size:11px;color:var(--gris);">Quand le pH est hors norme</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-orange">SMS + Photo</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg5">Bonjour [Prénom],
+
+Passage effectué — nettoyage complet réalisé ✅
+
+📊 Relevés du jour :
+• pH : [valeur] ⚠️ (idéal : 7,2 – 7,6)
+• Chlore : [valeur] mg/L
+
+⚠️ Attention : votre pH est [trop haut / trop bas]. Je vous recommande d'ajouter [pH- / pH+] dès que possible pour éviter l'irritation des yeux et préserver votre équipement.
+
+Le reste est en bon état. Votre piscine reste utilisable avec précaution.
+
+N'hésitez pas si vous avez des questions 🙂
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[valeur pH]</span><span class="msg-var">[valeur chlore]</span><span class="msg-var">[trop haut/bas]</span><span class="msg-var">[pH- ou pH+]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">6️⃣</span>
+            <div><div class="msg-situation">Anomalie technique détectée</div><div style="font-size:11px;color:var(--gris);">Pompe, fuite, liner… hors périmètre</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-rouge">SMS + Photo</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg6">Bonjour [Prénom],
+
+Passage effectué ✅ — mais j'ai remarqué quelque chose lors de mon contrôle visuel :
+
+⚠️ [Description précise : ex: "La pompe émet un bruit inhabituel" / "Une fuite semble visible au niveau du local technique" / "Le niveau d'eau a baissé de manière anormale"]
+
+Cela dépasse mon périmètre d'intervention (je ne fais pas de réparations), mais je voulais vous en informer rapidement pour que vous puissiez contacter un pisciniste.
+
+Je vous envoie une photo en pièce jointe.
+
+Tout le reste du nettoyage a été effectué normalement.
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[Description anomalie]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">7️⃣</span>
+            <div><div class="msg-situation">Rappel de passage (veille)</div><div style="font-size:11px;color:var(--gris);">La veille pour les clients peu présents</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-bleu">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg7">Bonjour [Prénom], petit rappel : je passerai demain [jour] vers [heure] pour l'entretien de votre piscine. Merci de vérifier que l'accès est libre. À demain ! 🌊 — Ethan</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[jour]</span><span class="msg-var">[heure]</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="msg-panel" id="tab-facturation">
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">8️⃣</span>
+            <div><div class="msg-situation">Envoi de la facture</div><div style="font-size:11px;color:var(--gris);">Après prestation ou en fin de mois</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-violet">Email</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg8">Bonjour [Prénom],
+
+Veuillez trouver ci-joint la facture n°[numéro] pour [la prestation du / le forfait du mois de] [date/mois].
+
+💶 Montant : [montant] €
+📅 Règlement souhaité sous 7 jours
+
+Modes de paiement acceptés :
+• Virement bancaire (IBAN sur la facture)
+• Espèces lors du prochain passage
+• Lydia / Sumeria : [numéro ou lien]
+
+Merci pour votre confiance, et à très bientôt !
+
+Ethan Cohen — Aqua Nette 〜
+07 83 56 07 52 | contactaquanette@gmail.com</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[numéro facture]</span><span class="msg-var">[date/mois]</span><span class="msg-var">[montant]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">9️⃣</span>
+            <div><div class="msg-situation">Relance impayé (douce, J+10)</div><div style="font-size:11px;color:var(--gris);">Première relance, ton amical</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-orange">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg9">Bonjour [Prénom], j'espère que vous allez bien 🙂 Je me permets de vous rappeler la facture n°[numéro] de [montant] € envoyée le [date], qui reste en attente de règlement. Si vous avez un problème ou une question, n'hésitez pas à me contacter. Merci ! — Ethan, Aqua Nette</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[numéro]</span><span class="msg-var">[montant]</span><span class="msg-var">[date]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">🔟</span>
+            <div><div class="msg-situation">Relance ferme (J+21)</div><div style="font-size:11px;color:var(--gris);">Deuxième relance, ton formel</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-rouge">Email</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg10">Bonjour [Prénom],
+
+Je me permets de revenir vers vous concernant la facture n°[numéro] d'un montant de [montant] €, émise le [date] et restée à ce jour sans règlement malgré mon premier rappel.
+
+Sans retour de votre part dans les 7 jours, je me verrai dans l'obligation de suspendre les interventions et de procéder à un recouvrement.
+
+Je reste bien entendu disponible pour en discuter si vous rencontrez une difficulté passagère.
+
+Cordialement,
+Ethan Cohen — Aqua Nette
+07 83 56 07 52</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[numéro]</span><span class="msg-var">[montant]</span><span class="msg-var">[date]</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="msg-panel" id="tab-fidelisation">
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">🌸</span>
+            <div><div class="msg-situation">Remise en route printemps (mars-avril)</div><div style="font-size:11px;color:var(--gris));">À envoyer en février-mars à tous les clients</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-vert">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg11">Bonjour [Prénom] ! 🌸
+
+La saison piscine approche — les beaux jours arrivent sur le Var !
+
+Je reprends les interventions dès [mois]. Souhaitez-vous que je programme la remise en route de votre piscine ? (1ère intervention de saison + contrôle complet : 80 €)
+
+Dites-moi si vous êtes partant(e) et je vous réserve un créneau 😊
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[mois]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">❄️</span>
+            <div><div class="msg-situation">Hivernage automne (octobre)</div><div style="font-size:11px;color:var(--gris);">À envoyer en septembre à tous les clients</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-azure">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg12">Bonjour [Prénom] 🍂
+
+La fin de saison approche ! Pensez à l'hivernage de votre piscine avant les premières fraîches.
+
+Je propose une intervention de fin de saison (nettoyage complet + préparation hivernage) à 70 €. Ça évite les mauvaises surprises au printemps 🙂
+
+Voulez-vous que je vous programme ça pour [mois] ?
+
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[mois]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">🎁</span>
+            <div><div class="msg-situation">Programme parrainage</div><div style="font-size:11px;color:var(--gris);">À envoyer aux clients satisfaits (mois 2-3)</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-vert">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg13">Bonjour [Prénom] 😊
+
+J'espère que vous êtes satisfait(e) de mes interventions ! Si vous connaissez un voisin ou ami avec une piscine qui cherche un entretien régulier, parlez-leur d'Aqua Nette 🙏
+
+Pour chaque personne que vous me recommandez et qui devient client, je vous offre -5 € sur votre prochaine facture.
+
+Merci d'avance ! — Ethan, Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="msg-panel" id="tab-situations">
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">🔄</span>
+            <div><div class="msg-situation">Report de passage (météo / imprévu)</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-orange">SMS</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg14">Bonjour [Prénom], désolé de vous prévenir tardivement — je dois reporter mon passage prévu [aujourd'hui / demain] en raison de [météo défavorable / imprévu]. Je vous propose [jour/date] à la place. Est-ce que ça vous convient ? Merci pour votre compréhension 🙏 — Ethan</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[motif]</span><span class="msg-var">[nouvelle date]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">⬆️</span>
+            <div><div class="msg-situation">Annonce de hausse tarifaire</div><div style="font-size:11px;color:var(--gris);">Préavis 30 jours, ton transparent</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-violet">Email</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg15">Bonjour [Prénom],
+
+Je me permets de vous informer d'une révision de mes tarifs à compter du [date], en raison de la hausse du coût du carburant et des charges.
+
+Votre forfait passera de [ancien tarif] € à [nouveau tarif] € par mois, soit une différence de [différence] €.
+
+Je vous remercie de votre confiance depuis [durée] et reste à votre disposition pour en discuter.
+
+Cordialement,
+Ethan — Aqua Nette 〜</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[date]</span><span class="msg-var">[ancien tarif]</span><span class="msg-var">[nouveau tarif]</span><span class="msg-var">[durée relation]</span></div>
+        </div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-card-header">
+          <div class="msg-card-left"><span style="font-size:18px;">😟</span>
+            <div><div class="msg-situation">Réponse à une réclamation</div><div style="font-size:11px;color:var(--gris);">Client insatisfait — répondre dans l'heure</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;"><span class="msg-channel bg-rouge">SMS / Appel</span><button class="msg-copy-btn" onclick="copyMsg(this)">Copier</button></div>
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" id="msg16">Bonjour [Prénom], merci de me l'avoir signalé, je comprends votre mécontentement. Je vous propose de repasser gratuitement [date] pour corriger le problème. Votre satisfaction est ma priorité et je ferai le nécessaire. Est-ce que ce créneau vous convient ? — Ethan, Aqua Nette</div>
+          <div class="msg-variables"><span class="msg-var">[Prénom]</span><span class="msg-var">[date]</span></div>
+          <div class="tip-box">⚡ <strong>Règle d'or réclamation :</strong> Ne jamais se justifier dans un premier message. Reconnaître, proposer une solution, agir vite. Un client réclamant bien géré devient souvent le plus fidèle.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.msg-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.msg-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyMsg(btn) {
+  const card = btn.closest('.msg-card');
+  const text = card.querySelector('.msg-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copié !';
+    btn.style.background = 'var(--vert)';
+    btn.style.color = 'white';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
