@@ -548,6 +548,47 @@ nav ul a:hover { color: var(--bleu); }
   border-radius: 24px;
   padding: 40px;
 }
+.form-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 40px;
+  gap: 20px;
+  min-height: 320px;
+}
+.form-success-icon {
+  width: 72px; height: 72px;
+  background: var(--turquoise);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+}
+.form-success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--bleu);
+}
+.form-success-text {
+  font-size: 14px; color: var(--gris);
+  line-height: 1.7; max-width: 340px;
+}
+.form-success-back {
+  margin-top: 8px;
+  background: var(--bleu); color: white;
+  border: none; padding: 14px 32px;
+  border-radius: 100px; font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; font-weight: 500;
+  transition: background 0.2s;
+}
+.form-success-back:hover { background: var(--azure); }
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
 .form-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px; font-weight: 400;
@@ -945,7 +986,7 @@ footer {
           <div class="contact-icon-box">✉️</div>
           <div>
             <div class="contact-label">Email</div>
-            <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b0804051f0a081f0a1a1e0a050e1f1f0e2b0c060a020745080406">[email&#160;protected]</a></div>
+            <div class="contact-value"><a href="mailto:contactaquanette@gmail.com" style="color:inherit;">contactaquanette@gmail.com</a></div>
           </div>
         </div>
         <div class="contact-item reveal">
@@ -1010,6 +1051,14 @@ footer {
           </div>
           <button type="submit" class="form-submit">Envoyer ma demande →</button>
         </form>
+        <div class="contact-form form-success" id="form-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Demande envoyée !</div>
+          <div class="form-success-text">Merci, votre demande a bien été reçue. Ethan vous répondra dans les 2 heures, du lundi au samedi de 8h à 19h.</div>
+          <button class="form-success-back" onclick="window.scrollTo({top:0,behavior:'smooth'});document.getElementById('form-success').style.display='none';document.querySelector('.contact-form:not(#form-success)').style.display='block';">
+            ← Retour à l'accueil
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1057,7 +1106,7 @@ footer {
           <strong>Activité :</strong> Nettoyage de piscines — Code APE 8129B<br>
           <strong>Adresse :</strong> Seillons-Source-d'Argens, 83 (Var), France<br>
           <strong>Téléphone :</strong> 07 83 56 07 52<br>
-          <strong>Email :</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3a0acadb7a2a0b7a2b2b6a2ada6b7b7a683a4aea2aaafeda0acae">[email&#160;protected]</a><br>
+          <strong>Email :</strong> <a href="mailto:contactaquanette@gmail.com" style="color:inherit;">contactaquanette@gmail.com</a><br>
           <strong>SIRET :</strong> [À compléter après immatriculation]<br>
           <strong>Numéro URSSAF :</strong> [À compléter]<br>
           <strong>Pas de TVA intracommunautaire</strong> (franchise en base de TVA — art. 293 B du CGI)
@@ -1084,7 +1133,7 @@ footer {
         <div class="ml-title">4. Données personnelles & RGPD</div>
         <div class="ml-text">
           Les informations collectées via le formulaire de contact (nom, téléphone, email) sont utilisées exclusivement pour répondre à vos demandes de devis. Elles ne sont ni revendues, ni transmises à des tiers.<br><br>
-          Conformément au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit : <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1a2aeafb5a0a2b5a0b0b4a0afa4b5b5a481a6aca0a8adefa2aeac">[email&#160;protected]</a></strong><br><br>
+          Conformément au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit : <strong><a href="mailto:contactaquanette@gmail.com" style="color:inherit;">contactaquanette@gmail.com</a></strong><br><br>
           <strong>Durée de conservation :</strong> les données de contact sont conservées 3 ans maximum à compter du dernier échange.
         </div>
       </div>
@@ -1130,7 +1179,7 @@ footer {
 
       <div class="ml-section">
         <div class="ml-title">1. Responsable du traitement</div>
-        <div class="ml-text"><strong>Ethan Cohen</strong> — Aqua Nette, micro-entrepreneur<br>Seillons-Source-d'Argens, 83 (Var)<br>Contact : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e88b87869c898b9c89999d89868d9c9c8da88f85898184c68b8785">[email&#160;protected]</a> · 07 83 56 07 52</div>
+        <div class="ml-text"><strong>Ethan Cohen</strong> — Aqua Nette, micro-entrepreneur<br>Seillons-Source-d'Argens, 83 (Var)<br>Contact : <a href="mailto:contactaquanette@gmail.com" style="color:inherit;">contactaquanette@gmail.com</a> · 07 83 56 07 52</div>
       </div>
 
       <div class="ml-section">
@@ -1182,7 +1231,7 @@ footer {
           — <strong>Droit à l'effacement</strong> : demander la suppression de vos données<br>
           — <strong>Droit d'opposition</strong> : vous opposer au traitement<br>
           — <strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible<br><br>
-          Pour exercer ces droits : <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90f3fffee4f1f3e4f1e1e5f1fef5e4e4f5d0f7fdf1f9fcbef3fffd">[email&#160;protected]</a></strong><br>
+          Pour exercer ces droits : <strong><a href="mailto:contactaquanette@gmail.com" style="color:inherit;">contactaquanette@gmail.com</a></strong><br>
           Réponse sous 30 jours. En cas de litige : <a href="https://www.cnil.fr" style="color:var(--azure);">www.cnil.fr</a>
         </div>
       </div>
@@ -1295,7 +1344,7 @@ footer {
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -1312,10 +1361,20 @@ window.addEventListener('scroll', () => {
 });
 
 document.querySelector('form[name="devis"]').addEventListener('submit', (e) => {
-  const btn = document.querySelector('.form-submit');
-  btn.textContent = '✓ Demande envoyée !';
-  btn.style.background = '#27AE60';
-  btn.disabled = true;
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch('/', { method: 'POST', body: data })
+    .then(() => {
+      form.style.display = 'none';
+      const success = document.getElementById('form-success');
+      success.style.display = 'flex';
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 300);
+    })
+    .catch(() => {
+      form.submit();
+    });
 });
 
 document.addEventListener('keydown', (e) => {
