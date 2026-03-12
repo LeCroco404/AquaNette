@@ -945,7 +945,7 @@ footer {
           <div class="contact-icon-box">✉️</div>
           <div>
             <div class="contact-label">Email</div>
-            <div class="contact-value">contactaquanette@gmail.com</div>
+            <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b0804051f0a081f0a1a1e0a050e1f1f0e2b0c060a020745080406">[email&#160;protected]</a></div>
           </div>
         </div>
         <div class="contact-item reveal">
@@ -965,26 +965,28 @@ footer {
       </div>
 
       <div class="reveal">
-        <div class="contact-form">
+        <form class="contact-form" name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="devis">
+          <p style="display:none;"><input name="bot-field"></p>
           <div class="form-title">Demande de devis</div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Prénom</label>
-              <input type="text" class="form-input" placeholder="Jean">
+              <input type="text" name="prenom" class="form-input" placeholder="Jean">
             </div>
             <div class="form-group">
               <label class="form-label">Nom</label>
-              <input type="text" class="form-input" placeholder="Dupont">
+              <input type="text" name="nom" class="form-input" placeholder="Dupont">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Village</label>
-              <input type="text" class="form-input" placeholder="Rians...">
+              <input type="text" name="village" class="form-input" placeholder="Rians...">
             </div>
             <div class="form-group">
               <label class="form-label">Volume piscine</label>
-              <select class="form-select">
+              <select name="volume" class="form-select">
                 <option>— Estimation —</option>
                 <option>Moins de 40 m³</option>
                 <option>40 à 70 m³</option>
@@ -994,7 +996,7 @@ footer {
           </div>
           <div class="form-group">
             <label class="form-label">Fréquence souhaitée</label>
-            <select class="form-select">
+            <select name="frequence" class="form-select">
               <option>— Choisir —</option>
               <option>1 passage / mois</option>
               <option>2 passages / mois</option>
@@ -1004,10 +1006,10 @@ footer {
           </div>
           <div class="form-group">
             <label class="form-label">Message (optionnel)</label>
-            <textarea class="form-textarea" placeholder="Résidence secondaire, type de piscine, remarques..."></textarea>
+            <textarea name="message" class="form-textarea" placeholder="Résidence secondaire, type de piscine, remarques..."></textarea>
           </div>
-          <button class="form-submit">Envoyer ma demande →</button>
-        </div>
+          <button type="submit" class="form-submit">Envoyer ma demande →</button>
+        </form>
       </div>
     </div>
   </div>
@@ -1293,7 +1295,7 @@ footer {
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -1309,20 +1311,18 @@ window.addEventListener('scroll', () => {
     window.scrollY > 50 ? '0 4px 30px rgba(10,61,95,0.1)' : 'none';
 });
 
-document.querySelector('.form-submit').addEventListener('click', () => {
+document.querySelector('form[name="devis"]').addEventListener('submit', (e) => {
   const btn = document.querySelector('.form-submit');
-  btn.textContent = '✓ Message envoyé !';
+  btn.textContent = '✓ Demande envoyée !';
   btn.style.background = '#27AE60';
-  setTimeout(() => {
-    btn.textContent = 'Envoyer ma demande →';
-    btn.style.background = '';
-  }, 3000);
+  btn.disabled = true;
 });
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     ['modal-ml','modal-pc','modal-cgv'].forEach(id => {
-      document.getElementById(id).classList.remove('open');
+      const el = document.getElementById(id);
+      if(el) el.classList.remove('open');
     });
   }
 });
